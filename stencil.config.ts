@@ -14,7 +14,7 @@ import {
 import ts from 'typescript';
 
 export const config: StencilConfig = {
-  buildEs5: 'prod',
+  buildEs5: false,
   globalScript: 'src/global/global.ts',
   globalStyle: 'src/global/global.shared.scss',
   namespace: 'lyne-components',
@@ -27,7 +27,7 @@ export const config: StencilConfig = {
       type: 'dist'
     },
     {
-      type: 'dist-custom-elements-bundle'
+      type: 'dist-custom-elements'
     },
     {
       footer: '',
@@ -72,7 +72,7 @@ interface InputOptions {
  * Event sync rollup hook implementation.
  * For each build cycle, all component files are checked for @Event({...})
  * usages and the property name and event name will be synced in the
- * corresponding .events.ts file. * 
+ * corresponding .events.ts file.
  */
 function eventSync(): any {
   const componentsPath = resolve(__dirname, 'src/components');
@@ -123,7 +123,7 @@ function syncEvents(path: string) {
     }
   }
 
-  function checkForEventDecorator(node: ts.PropertyDeclaration) {    
+  function checkForEventDecorator(node: ts.PropertyDeclaration) {
     const eventDecorator = node.decorators!.find(isEventDecorator);
     if (!eventDecorator) {
       return;
