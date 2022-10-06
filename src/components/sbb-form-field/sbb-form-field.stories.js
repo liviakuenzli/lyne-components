@@ -1,5 +1,14 @@
+import { SbbColorWhiteDefault } from '@sbb-esta/lyne-design-tokens';
+import { SbbColorIronDefault } from '@sbb-esta/lyne-design-tokens';
 import { h } from 'jsx-dom';
 import readme from './readme.md';
+
+const wrapperStyle = (context) => {
+  if (context.args.negative) {
+    return `background-color: ${SbbColorIronDefault};`;
+  }
+  return `background-color: ${SbbColorWhiteDefault};`;
+};
 
 const TemplateBasicInput = (args) => (
   <input
@@ -31,6 +40,7 @@ const TemplateInput = (args) => (
     optional={args.optional}
     size={args.size}
     borderless={args.borderless}
+    negative={args.negative}
   >
     {TemplateBasicInput(args)}
   </sbb-form-field>
@@ -264,6 +274,15 @@ const sizeArg = {
   },
 };
 
+const negativeArg = {
+  control: {
+    type: 'boolean',
+  },
+  table: {
+    category: 'Form-field attribute',
+  },
+};
+
 const basicArgTypes = {
   'error-space': errorSpaceArg,
   label: labelArg,
@@ -276,6 +295,7 @@ const basicArgTypes = {
   readonly: readonlyArg,
   value: valueArg,
   errortext: errortextArg,
+  negative: negativeArg,
 };
 
 const basicArgs = {
@@ -290,6 +310,7 @@ const basicArgs = {
   disabled: false,
   readonly: false,
   errortext: 'This is a required field.',
+  negative: false,
 };
 
 export const Input = TemplateInput.bind({});
@@ -354,6 +375,13 @@ InputLongLabelAndErrorSpace.documentation = {
   title: 'sbb-form-field component with input tag, sbb-form-error and long error message',
 };
 
+export const InputNegative = TemplateInput.bind({});
+InputNegative.argTypes = basicArgTypes;
+InputNegative.args = { ...basicArgs, value: 'This is the input value', negative: true };
+InputNegative.documentation = {
+  title: 'sbb-form-field negative component with input tag and long text',
+};
+
 export const Select = TemplateSelect.bind({});
 Select.argTypes = basicArgTypes;
 Select.args = JSON.parse(JSON.stringify(basicArgs));
@@ -391,8 +419,8 @@ SelectOptionalAndIcons.documentation = {
 
 export default {
   decorators: [
-    (Story) => (
-      <div style={'padding: 2rem'}>
+    (Story, context) => (
+      <div style={`${wrapperStyle(context)}padding: 2rem`}>
         <Story />
       </div>
     ),

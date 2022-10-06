@@ -86,6 +86,12 @@
   --form-field-error-padding-block-start-override: var(--form-field-error-divider-width);
 }
 
+:host([negative]) {
+  --form-field-background-color: var(--sbb-color-iron-default);
+  --form-field-border-color: var(--sbb-color-white-default);
+  --form-field-text-color: var(--sbb-color-white-default);
+}
+
 .form-field__space-wrapper {
   display: flex;
   flex-direction: column;
