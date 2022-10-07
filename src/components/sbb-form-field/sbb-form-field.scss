@@ -14,6 +14,7 @@
   --form-field-height: var(--sbb-size-form-element-m-min-height);
   --form-field-label-color: var(--sbb-color-metal-default);
   --form-field-prefix-color: var(--sbb-color-metal-default);
+  --form-field-suffix-color: var(--sbb-color-metal-default);
   --form-field-padding-inline: var(--sbb-spacing-fixed-3x);
   --form-field-text-color: var(--sbb-color-charcoal-default);
   --form-field-error-divider-width: var(--sbb-spacing-fixed-1x);
@@ -87,9 +88,39 @@
 }
 
 :host([negative]) {
-  --form-field-background-color: var(--sbb-color-iron-default);
+  --form-field-background-color: transparent;
   --form-field-border-color: var(--sbb-color-white-default);
   --form-field-text-color: var(--sbb-color-white-default);
+  --form-field-label-color: var(--sbb-color-cement-default);
+  --form-field-prefix-color: var(--sbb-color-cement-default);
+  --form-field-suffix-color: var(--sbb-color-cement-default);
+}
+
+:host([negative].form-field--borderless) {
+  --form-field-border-color: transparent;
+}
+
+:host([negative].form-field--readonly),
+:host([negative].form-field--disabled) {
+  --form-field-background-color: var(--sbb-color-granite-default);
+  --form-field-border-color: var(--sbb-color-cement-default);
+}
+
+:host([negative].form-field--readonly) {
+  --form-field-label-color: var(--sbb-color-cement-default);
+  --form-field-prefix-color: var(--sbb-color-cement-default);
+}
+
+:host([negative].form-field--disabled) {
+  --form-field-label-color: var(--sbb-color-cement-default);
+  --form-field-prefix-color: var(--sbb-color-cement-default);
+  --form-field-text-color: var(--sbb-color-cement-default);
+
+  @include ifForcedColors {
+    --form-field-label-color: GrayText;
+    --form-field-prefix-color: GrayText;
+    --form-field-text-color: GrayText;
+  }
 }
 
 .form-field__space-wrapper {
@@ -126,6 +157,10 @@
 
 ::slotted(*[slot='prefix']) {
   color: var(--form-field-prefix-color);
+}
+
+::slotted(*[slot='suffix']) {
+  color: var(--form-field-suffix-color);
 }
 
 .form-field__input-container {

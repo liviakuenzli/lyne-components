@@ -382,6 +382,58 @@ InputNegative.documentation = {
   title: 'sbb-form-field negative component with input tag and long text',
 };
 
+export const InputNegativeNoLabel = TemplateInput.bind({});
+InputNegativeNoLabel.argTypes = basicArgTypes;
+InputNegativeNoLabel.args = { ...basicArgs, label: '', negative: true };
+InputNegativeNoLabel.documentation = {
+  title: 'sbb-form-field component with input tag without label',
+};
+
+export const InputNegativeWithoutBorder = TemplateInput.bind({});
+InputNegativeWithoutBorder.argTypes = basicArgTypes;
+InputNegativeWithoutBorder.args = { ...basicArgs, borderless: true, negative: true };
+InputNegativeWithoutBorder.documentation = {
+  title: 'sbb-form-field component with input tag and borderless',
+};
+
+export const InputNegativeDisabled = TemplateInput.bind({});
+InputNegativeDisabled.argTypes = basicArgTypes;
+InputNegativeDisabled.args = { ...basicArgs, disabled: true, negative: true };
+InputNegativeDisabled.documentation = {
+  title: 'sbb-form-field component with input tag disabled',
+};
+
+export const InputNegativeReadonly = TemplateInput.bind({});
+InputNegativeReadonly.argTypes = basicArgTypes;
+InputNegativeReadonly.args = { ...basicArgs, readonly: true, negative: true };
+InputNegativeReadonly.documentation = {
+  title: 'sbb-form-field with input tag readonly',
+};
+
+export const InputNegativeOptionalAndIcons = TemplateInputWithIcons.bind({});
+InputNegativeOptionalAndIcons.argTypes = basicArgTypes;
+InputNegativeOptionalAndIcons.args = { ...basicArgs, optional: true, negative: true };
+InputNegativeOptionalAndIcons.documentation = {
+  title: 'sbb-form-field component with input tag, optional label and prefix/suffix icons',
+};
+
+export const InputNegativeLongLabelAndErrorSpace = TemplateInputWithErrorSpace.bind({});
+InputNegativeLongLabelAndErrorSpace.argTypes = {
+  ...basicArgTypes,
+  'error-space': errorSpaceArg,
+  negative: true,
+};
+InputNegativeLongLabelAndErrorSpace.args = {
+  ...basicArgs,
+  'error-space': 'reserve',
+  class: 'sbb-invalid',
+  label: 'This label name is so long that it needs ellipsis to fit.',
+  value: 'This input value is so long that it needs ellipsis to fit.',
+};
+InputNegativeLongLabelAndErrorSpace.documentation = {
+  title: 'sbb-form-field component with input tag, sbb-form-error and long error message',
+};
+
 export const Select = TemplateSelect.bind({});
 Select.argTypes = basicArgTypes;
 Select.args = JSON.parse(JSON.stringify(basicArgs));
