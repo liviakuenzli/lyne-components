@@ -1,6 +1,9 @@
 import images from '../../global/images';
 import { SbbColorWhiteDefault } from '@sbb-esta/lyne-design-tokens';
-// import readme from './readme.md';
+// FIXME
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import readme from './readme.md';
 
 const wrapperStyle = (context): string => {
   if (context.args.negative) {
@@ -35,7 +38,29 @@ const spreadTagAttributes = (args: object): string => {
 // --- Component
 
 const template = ({ text, ...args }): string => `
-  <sbb-button ${spreadTagAttributes(args)}>${text}</sbb-button>
+  <sbb-button ${spreadTagAttributes(args)}>${text ?? ''}</sbb-button>
+`;
+
+const iconSlotTemplate = ({ text, 'icon-name': iconName, ...args }): string => `
+  <sbb-button ${spreadTagAttributes(args)}>
+    ${text}
+    <sbb-icon slot="icon" name="${iconName}"></sbb-icon>
+  </sbb-button>
+`;
+
+const fixedWidthTemplate = ({ text, ...args }): string => `
+  <div>
+    <p>
+      <sbb-button ${spreadTagAttributes(args)} style="width: 200px;">
+        ${text ?? ''}
+      </sbb-button>
+    </p>
+    <p>
+      <sbb-button ${spreadTagAttributes(args)} style="max-width: 100%; width: 600px;">
+        Wide Button
+      </sbb-button>
+    </p>
+  </div>
 `;
 
 // --- Arg types
@@ -467,6 +492,40 @@ sizeM.documentation = {
   title: 'M size',
 };
 
+export const fixedWidth = fixedWidthTemplate.bind({});
+fixedWidth.argTypes = defaultArgTypes;
+fixedWidth.args = {
+  ...defaultArgs,
+  text: 'Button with long text',
+  'icon-name': 'arrow-right-small',
+};
+fixedWidth.documentation = {
+  title: 'Fixed width with overflow',
+};
+
+export const withSlottedIcon = iconSlotTemplate.bind({});
+withSlottedIcon.argTypes = defaultArgTypes;
+withSlottedIcon.args = {
+  ...defaultArgs,
+  'icon-name': 'chevron-small-right-small',
+};
+withSlottedIcon.documentation = {
+  title: 'With slotted icon',
+};
+
+export const linkOpensInNewWindow = iconSlotTemplate.bind({});
+linkOpensInNewWindow.argTypes = defaultArgTypes;
+linkOpensInNewWindow.args = {
+  ...defaultArgs,
+  href: 'https://www.sbb.ch',
+  'icon-name': 'chevron-small-right-small',
+  target: '_blank',
+  'accessibility-label': undefined,
+};
+linkOpensInNewWindow.documentation = {
+  title: 'Link opened in new window',
+};
+
 export default {
   decorators: [
     (story, context) =>
@@ -482,8 +541,7 @@ export default {
       disable: true,
     },
     docs: {
-      // page: readme
-      // extractComponentDescription: () => readme,
+      extractComponentDescription: () => readme,
     },
   },
   title: 'components/sbb-button-new',
