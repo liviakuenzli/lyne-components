@@ -175,5 +175,8 @@
     "*.{scss}": [
       "stylelint --fix"
     ]
+  },
+  "dependencies": {
+    "storybook-addon-variants": "^0.2.0"
   }
 }
