@@ -9,7 +9,7 @@ import {
   resolveRenderVariables,
 } from '../../global/interfaces/link-button-properties';
 import { InterfaceLinkAttributes } from './sbb-link.custom';
-import { ACTION_ELEMENTS, hostContext } from '../../global/helpers/host-context';
+import { hostContext } from '../../global/helpers/host-context';
 import { i18nTargetOpensInNewWindow } from '../../global/i18n';
 import getDocumentLang from '../../global/helpers/get-document-lang';
 import {
@@ -17,6 +17,7 @@ import {
   queryAndObserveNamedSlotState,
   queryNamedSlotState,
 } from '../../global/helpers/observe-named-slot-changes';
+import { CSSVariableContext } from '../../global/helpers/css-variable-context';
 
 /**
  * @slot unnamed - Link Content
@@ -116,9 +117,12 @@ export class SbbLink implements LinkButtonProperties, ComponentInterface {
 
   private _closestForm: HTMLFormElement | null;
 
+  private _cssVariableContext = new CSSVariableContext(this, this._element);
+
   public connectedCallback(): void {
-    // Check if the current element is nested in an action element.
-    this.isStatic = this.isStatic || !!hostContext(ACTION_ELEMENTS, this._element);
+    this._cssVariableContext
+      .mutateBooleanProperties('isStatic', 'negative')
+      .mutateStringProperties('textSize', 'variant');
     // Check if the current element is nested in a form.
     this._closestForm = hostContext('form', this._element) as HTMLFormElement;
     this._namedSlots = queryAndObserveNamedSlotState(this._element, this._namedSlots);

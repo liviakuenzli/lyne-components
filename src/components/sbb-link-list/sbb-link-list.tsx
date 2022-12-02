@@ -6,6 +6,7 @@ import {
   queryAndObserveNamedSlotState,
   queryNamedSlotState,
 } from '../../global/helpers/observe-named-slot-changes';
+import { InterfaceLinkAttributes } from '../sbb-link/sbb-link.custom';
 
 let nextId = 0;
 
@@ -24,14 +25,21 @@ export class SbbLinkList {
   /** The semantic level of the title, e.g. 2 = h2. */
   @Prop() public titleLevel?: InterfaceTitleAttributes['level'] = '2';
 
+  /**
+   * Text size, the link should get in the non-button variation.
+   * With inline variant, the text size adapts to where it is used.
+   */
+  @Prop({ reflect: true }) public textSize: InterfaceLinkAttributes['textSize'] = 's';
+
   /** Negative coloring variant flag. */
-  @Prop() public negative: boolean;
+  @Prop({ reflect: true }) public negative: boolean;
 
   /** Selected breakpoint from which the list is rendered horizontally. */
   @Prop() public horizontalFrom?: InterfaceLinkListAttributes['horizontalFromBreakpoint'];
 
   /** The orientation in which the list will be shown vertical or horizontal. */
-  @Prop() public orientation: InterfaceLinkListAttributes['orientation'] = 'vertical';
+  @Prop({ reflect: true }) public orientation: InterfaceLinkListAttributes['orientation'] =
+    'vertical';
 
   /** Sbb-Link elements */
   @State() private _links: HTMLSbbLinkElement[];

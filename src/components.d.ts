@@ -988,6 +988,10 @@ export namespace Components {
          */
         "orientation": InterfaceLinkListAttributes['orientation'];
         /**
+          * Text size, the link should get in the non-button variation. With inline variant, the text size adapts to where it is used.
+         */
+        "textSize": InterfaceLinkAttributes['textSize'];
+        /**
           * The title text we want to show before the list.
          */
         "titleContent"?: string;
@@ -3228,6 +3232,10 @@ declare namespace LocalJSX {
           * The orientation in which the list will be shown vertical or horizontal.
          */
         "orientation"?: InterfaceLinkListAttributes['orientation'];
+        /**
+          * Text size, the link should get in the non-button variation. With inline variant, the text size adapts to where it is used.
+         */
+        "textSize"?: InterfaceLinkAttributes['textSize'];
         /**
           * The title text we want to show before the list.
          */

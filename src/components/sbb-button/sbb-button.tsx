@@ -9,7 +9,7 @@ import {
   PopupType,
   resolveRenderVariables,
 } from '../../global/interfaces/link-button-properties';
-import { ACTION_ELEMENTS, hostContext } from '../../global/helpers/host-context';
+import { hostContext } from '../../global/helpers/host-context';
 import {
   createNamedSlotState,
   queryAndObserveNamedSlotState,
@@ -17,6 +17,7 @@ import {
 } from '../../global/helpers/observe-named-slot-changes';
 import { i18nTargetOpensInNewWindow } from '../../global/i18n';
 import getDocumentLang from '../../global/helpers/get-document-lang';
+import { CSSVariableContext } from '../../global/helpers/css-variable-context';
 
 /**
  * @slot unnamed - Button Content
@@ -111,9 +112,10 @@ export class SbbButton implements LinkButtonProperties, ComponentInterface {
 
   private _closestForm: HTMLFormElement | null;
 
+  private _cssVariableContext = new CSSVariableContext(this, this._element);
+
   public connectedCallback(): void {
-    // Check if the current element is nested in an action element.
-    this.isStatic = this.isStatic || !!hostContext(ACTION_ELEMENTS, this._element);
+    this._cssVariableContext.mutateBooleanProperties('isStatic', 'negative');
     // Check if the current element is nested in a form.
     this._closestForm = hostContext('form', this._element) as HTMLFormElement;
     this._hasText = Array.from(this._element.childNodes).some(

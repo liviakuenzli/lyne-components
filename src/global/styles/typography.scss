@@ -44,3 +44,38 @@ html {
 .sbb-step-list {
   @include step-list;
 }
+
+///////////////////////
+// Context variables
+///////////////////////
+.sbb-negative,
+[negative] {
+  --_sbb__negative: true;
+}
+
+.sbb-positive {
+  --_sbb__negative: false;
+}
+
+a,
+button {
+  --_sbb-button__is-static: true;
+  --_sbb-link__is-static: true;
+}
+
+// sbb-link-list
+sbb-link-list > * {
+  --_sbb-link__variant: block;
+}
+
+sbb-link-list[text-size='xs'] > * {
+  --_sbb-link__text-size: xs;
+}
+
+sbb-link-list[text-size='s'] > * {
+  --_sbb-link__text-size: s;
+}
+
+sbb-link-list[text-size='m'] > * {
+  --_sbb-link__text-size: m;
+}
