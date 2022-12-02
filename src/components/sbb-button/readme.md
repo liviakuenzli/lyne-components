@@ -78,6 +78,7 @@ sbb-button {
 ### Used by
 
  - [sbb-alert](../sbb-alert)
+ - [sbb-calendar](../sbb-calendar)
  - [sbb-dialog](../sbb-dialog)
  - [sbb-navigation](../sbb-navigation)
  - [sbb-navigation-section](../sbb-navigation-section)
@@ -92,6 +93,7 @@ sbb-button {
 graph TD;
   sbb-button --> sbb-icon
   sbb-alert --> sbb-button
+  sbb-calendar --> sbb-button
   sbb-dialog --> sbb-button
   sbb-navigation --> sbb-button
   sbb-navigation-section --> sbb-button
