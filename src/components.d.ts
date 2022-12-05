@@ -1416,6 +1416,8 @@ export namespace Components {
          */
         "value"?: string;
     }
+    interface SbbTagGroup {
+    }
     interface SbbTeaser {
         /**
           * This will be forwarded as aria-describedby to the relevant nested element.
@@ -2083,6 +2085,12 @@ declare global {
         prototype: HTMLSbbTagElement;
         new (): HTMLSbbTagElement;
     };
+    interface HTMLSbbTagGroupElement extends Components.SbbTagGroup, HTMLStencilElement {
+    }
+    var HTMLSbbTagGroupElement: {
+        prototype: HTMLSbbTagGroupElement;
+        new (): HTMLSbbTagGroupElement;
+    };
     interface HTMLSbbTeaserElement extends Components.SbbTeaser, HTMLStencilElement {
     }
     var HTMLSbbTeaserElement: {
@@ -2250,6 +2258,7 @@ declare global {
         "sbb-tab-group": HTMLSbbTabGroupElement;
         "sbb-tab-title": HTMLSbbTabTitleElement;
         "sbb-tag": HTMLSbbTagElement;
+        "sbb-tag-group": HTMLSbbTagGroupElement;
         "sbb-teaser": HTMLSbbTeaserElement;
         "sbb-teaser-hero": HTMLSbbTeaserHeroElement;
         "sbb-timetable": HTMLSbbTimetableElement;
@@ -3684,6 +3693,8 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface SbbTagGroup {
+    }
     interface SbbTeaser {
         /**
           * This will be forwarded as aria-describedby to the relevant nested element.
@@ -4080,6 +4091,7 @@ declare namespace LocalJSX {
         "sbb-tab-group": SbbTabGroup;
         "sbb-tab-title": SbbTabTitle;
         "sbb-tag": SbbTag;
+        "sbb-tag-group": SbbTagGroup;
         "sbb-teaser": SbbTeaser;
         "sbb-teaser-hero": SbbTeaserHero;
         "sbb-timetable": SbbTimetable;
@@ -4152,6 +4164,7 @@ declare module "@stencil/core" {
             "sbb-tab-group": LocalJSX.SbbTabGroup & JSXBase.HTMLAttributes<HTMLSbbTabGroupElement>;
             "sbb-tab-title": LocalJSX.SbbTabTitle & JSXBase.HTMLAttributes<HTMLSbbTabTitleElement>;
             "sbb-tag": LocalJSX.SbbTag & JSXBase.HTMLAttributes<HTMLSbbTagElement>;
+            "sbb-tag-group": LocalJSX.SbbTagGroup & JSXBase.HTMLAttributes<HTMLSbbTagGroupElement>;
             "sbb-teaser": LocalJSX.SbbTeaser & JSXBase.HTMLAttributes<HTMLSbbTeaserElement>;
             "sbb-teaser-hero": LocalJSX.SbbTeaserHero & JSXBase.HTMLAttributes<HTMLSbbTeaserHeroElement>;
             "sbb-timetable": LocalJSX.SbbTimetable & JSXBase.HTMLAttributes<HTMLSbbTimetableElement>;
