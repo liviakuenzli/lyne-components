@@ -1388,10 +1388,6 @@ export namespace Components {
          */
         "accessibilityLabelledby": string | undefined;
         /**
-          * Active tag state
-         */
-        "active"?: boolean;
-        /**
           * Whether the internal hidden checkbox is checked.
          */
         "checked": boolean;
@@ -3660,10 +3656,6 @@ declare namespace LocalJSX {
           * The aria-labelledby prop for the hidden input.
          */
         "accessibilityLabelledby"?: string | undefined;
-        /**
-          * Active tag state
-         */
-        "active"?: boolean;
         /**
           * Whether the internal hidden checkbox is checked.
          */
