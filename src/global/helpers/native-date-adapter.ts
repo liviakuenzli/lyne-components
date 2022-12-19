@@ -100,7 +100,67 @@ export class NativeDateAdapter {
    * Returns null if the given Date is in another month.
    */
   public getDateInCurrentMonth(date: Date | null, activeDate: Date | null): number | null {
-    return date && this._hasSameMonthAndYear(date, activeDate) ? this.getDate(date) : null;
+    return date && this.hasSameMonthAndYear(date, activeDate) ? this.getDate(date) : null;
+  }
+
+  public isDateInstance(obj: any): boolean {
+    return obj instanceof Date;
+  }
+
+  public isValid(date: Date): boolean {
+    return !isNaN(date.valueOf());
+  }
+
+  public invalid(): Date {
+    return new Date(NaN);
+  }
+
+  /**
+   * @param obj The object to check.
+   * @returns The given object if it is both a date instance and valid, otherwise null.
+   */
+  public getValidDateOrNull(obj: any): Date | null {
+    return this.isDateInstance(obj) && this.isValid(obj) ? obj : null;
+  }
+
+  public deserialize(value: any): Date | null {
+    if (value == null || (this.isDateInstance(value) && this.isValid(value))) {
+      return value;
+    }
+    return this.invalid();
+  }
+
+  /**
+   * Clamp the given date between min and max dates.
+   * @param date The date to clamp.
+   * @param min The minimum value to allow. If null or omitted no min is enforced.
+   * @param max The maximum value to allow. If null or omitted no max is enforced.
+   * @returns `min` if `date` is less than `min`, `max` if date is greater than `max`,
+   *     otherwise `date`.
+   */
+  public clampDate(date: Date, min?: Date | null, max?: Date | null): Date {
+    if (min && this.compareDate(date, min) < 0) {
+      return min;
+    }
+    if (max && this.compareDate(date, max) > 0) {
+      return max;
+    }
+    return date;
+  }
+
+  /**
+   * Compares two dates.
+   * @param first The first date to compare.
+   * @param second The second date to compare.
+   * @returns 0 if the dates are equal, a number less than 0 if the first date is earlier,
+   *     a number greater than 0 if the first date is later.
+   */
+  public compareDate(first: Date, second: Date): number {
+    return (
+      this.getYear(first) - this.getYear(second) ||
+      this.getMonth(first) - this.getMonth(second) ||
+      this.getDate(first) - this.getDate(second)
+    );
   }
 
   /** Creates a date but allows the month and date to overflow. */
@@ -116,7 +176,7 @@ export class NativeDateAdapter {
   }
 
   /** Checks whether the 2 dates are non-null and fall within the same month of the same year. */
-  private _hasSameMonthAndYear(d1: Date | null, d2: Date | null): boolean {
+  public hasSameMonthAndYear(d1: Date | null, d2: Date | null): boolean {
     return !!(
       d1 &&
       d2 &&

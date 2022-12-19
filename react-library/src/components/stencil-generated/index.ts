@@ -17,6 +17,7 @@ export const SbbAutocomplete = /*@__PURE__*/createReactComponent<JSX.SbbAutocomp
 export const SbbAutocompleteItem = /*@__PURE__*/createReactComponent<JSX.SbbAutocompleteItem, HTMLSbbAutocompleteItemElement>('sbb-autocomplete-item');
 export const SbbButton = /*@__PURE__*/createReactComponent<JSX.SbbButton, HTMLSbbButtonElement>('sbb-button');
 export const SbbCalendar = /*@__PURE__*/createReactComponent<JSX.SbbCalendar, HTMLSbbCalendarElement>('sbb-calendar');
+export const SbbCalendarMonth = /*@__PURE__*/createReactComponent<JSX.SbbCalendarMonth, HTMLSbbCalendarMonthElement>('sbb-calendar-month');
 export const SbbCard = /*@__PURE__*/createReactComponent<JSX.SbbCard, HTMLSbbCardElement>('sbb-card');
 export const SbbCardBadge = /*@__PURE__*/createReactComponent<JSX.SbbCardBadge, HTMLSbbCardBadgeElement>('sbb-card-badge');
 export const SbbCardProduct = /*@__PURE__*/createReactComponent<JSX.SbbCardProduct, HTMLSbbCardProductElement>('sbb-card-product');

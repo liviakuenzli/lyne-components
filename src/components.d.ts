@@ -309,10 +309,33 @@ export namespace Components {
           * The selected date.
          */
         "selectedDate": Date;
+        "startAt": Date;
         /**
           * If set to true, two months are displayed
          */
         "wide": boolean;
+    }
+    interface SbbCalendarMonth {
+        /**
+          * The currently active date.
+         */
+        "activeDate": Date;
+        /**
+          * A function used to filter out dates.
+         */
+        "dateFilter": (date: Date | null) => boolean;
+        /**
+          * The maximum valid date.
+         */
+        "maxDate": Date;
+        /**
+          * The minimum valid date.
+         */
+        "minDate": Date;
+        /**
+          * The selected date.
+         */
+        "selectedDate": Date;
     }
     interface SbbCard {
         /**
@@ -1590,9 +1613,9 @@ export interface SbbAlertGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLSbbAlertGroupElement;
 }
-export interface SbbCalendarCustomEvent<T> extends CustomEvent<T> {
+export interface SbbCalendarMonthCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLSbbCalendarElement;
+    target: HTMLSbbCalendarMonthElement;
 }
 export interface SbbCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1688,6 +1711,12 @@ declare global {
     var HTMLSbbCalendarElement: {
         prototype: HTMLSbbCalendarElement;
         new (): HTMLSbbCalendarElement;
+    };
+    interface HTMLSbbCalendarMonthElement extends Components.SbbCalendarMonth, HTMLStencilElement {
+    }
+    var HTMLSbbCalendarMonthElement: {
+        prototype: HTMLSbbCalendarMonthElement;
+        new (): HTMLSbbCalendarMonthElement;
     };
     interface HTMLSbbCardElement extends Components.SbbCard, HTMLStencilElement {
     }
@@ -2071,6 +2100,7 @@ declare global {
         "sbb-autocomplete-item": HTMLSbbAutocompleteItemElement;
         "sbb-button": HTMLSbbButtonElement;
         "sbb-calendar": HTMLSbbCalendarElement;
+        "sbb-calendar-month": HTMLSbbCalendarMonthElement;
         "sbb-card": HTMLSbbCardElement;
         "sbb-card-badge": HTMLSbbCardBadgeElement;
         "sbb-card-product": HTMLSbbCardProductElement;
@@ -2406,17 +2436,40 @@ declare namespace LocalJSX {
          */
         "min"?: Date;
         /**
-          * Event emitted on date selection.
-         */
-        "onDate-selected"?: (event: SbbCalendarCustomEvent<Date>) => void;
-        /**
           * The selected date.
          */
         "selectedDate"?: Date;
+        "startAt"?: Date;
         /**
           * If set to true, two months are displayed
          */
         "wide"?: boolean;
+    }
+    interface SbbCalendarMonth {
+        /**
+          * The currently active date.
+         */
+        "activeDate"?: Date;
+        /**
+          * A function used to filter out dates.
+         */
+        "dateFilter"?: (date: Date | null) => boolean;
+        /**
+          * The maximum valid date.
+         */
+        "maxDate"?: Date;
+        /**
+          * The minimum valid date.
+         */
+        "minDate"?: Date;
+        /**
+          * Event emitted on date selection.
+         */
+        "onDate-selected"?: (event: SbbCalendarMonthCustomEvent<Date>) => void;
+        /**
+          * The selected date.
+         */
+        "selectedDate"?: Date;
     }
     interface SbbCard {
         /**
@@ -3732,6 +3785,7 @@ declare namespace LocalJSX {
         "sbb-autocomplete-item": SbbAutocompleteItem;
         "sbb-button": SbbButton;
         "sbb-calendar": SbbCalendar;
+        "sbb-calendar-month": SbbCalendarMonth;
         "sbb-card": SbbCard;
         "sbb-card-badge": SbbCardBadge;
         "sbb-card-product": SbbCardProduct;
@@ -3809,6 +3863,7 @@ declare module "@stencil/core" {
             "sbb-autocomplete-item": LocalJSX.SbbAutocompleteItem & JSXBase.HTMLAttributes<HTMLSbbAutocompleteItemElement>;
             "sbb-button": LocalJSX.SbbButton & JSXBase.HTMLAttributes<HTMLSbbButtonElement>;
             "sbb-calendar": LocalJSX.SbbCalendar & JSXBase.HTMLAttributes<HTMLSbbCalendarElement>;
+            "sbb-calendar-month": LocalJSX.SbbCalendarMonth & JSXBase.HTMLAttributes<HTMLSbbCalendarMonthElement>;
             "sbb-card": LocalJSX.SbbCard & JSXBase.HTMLAttributes<HTMLSbbCardElement>;
             "sbb-card-badge": LocalJSX.SbbCardBadge & JSXBase.HTMLAttributes<HTMLSbbCardBadgeElement>;
             "sbb-card-product": LocalJSX.SbbCardProduct & JSXBase.HTMLAttributes<HTMLSbbCardProductElement>;

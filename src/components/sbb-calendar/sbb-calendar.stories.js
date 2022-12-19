@@ -1,4 +1,3 @@
-import events from './sbb-calendar.events.ts';
 import { h } from 'jsx-dom';
 import readme from './readme.md';
 
@@ -16,7 +15,7 @@ export default {
   ],
   parameters: {
     actions: {
-      handles: [events.dateSelected],
+      handles: [],
     },
     backgrounds: {
       disable: true,
