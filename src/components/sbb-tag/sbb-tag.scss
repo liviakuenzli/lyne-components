@@ -46,19 +46,8 @@
     :host(:not([disabled])) &:hover {
       --sbb-tag-background-color: var(--sbb-color-milk-default);
       --sbb-tag-inset: calc(var(--sbb-border-width-2x) * -1);
-      --sbb-tag-translate-y-content-hover: #{sbb.px-to-rem-build(-1)};
     }
     // stylelint-enable plugin/stylelint-bem-namics
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: var(--sbb-tag-inset);
-    background-color: var(--sbb-tag-background-color);
-    border: var(--sbb-tag-border-width) solid var(--sbb-tag-border-color);
-    border-radius: var(--sbb-tag-border-radius);
-    transition: all var(--sbb-animation-duration-2x) var(--sbb-animation-easing);
   }
 }
 
@@ -73,13 +62,22 @@
   cursor: pointer;
   border-radius: var(--sbb-tag-border-radius);
   color: var(--sbb-tag-text-color);
-  transform: translateY(var(--sbb-tag-translate-y-content-hover, #{sbb.px-to-rem-build(0)}));
-  transition: transform var(--sbb-animation-duration-2x) var(--sbb-animation-easing);
 
   &:active {
     --sbb-tag-background-color: var(--sbb-color-milk-default);
     --sbb-tag-border-color: var(--sbb-color-iron-default);
     --sbb-tag-border-width: var(--sbb-border-width-2x);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: var(--sbb-tag-inset);
+    background-color: var(--sbb-tag-background-color);
+    border: var(--sbb-tag-border-width) solid var(--sbb-tag-border-color);
+    border-radius: var(--sbb-tag-border-radius);
+    transition: all var(--sbb-animation-duration-2x) var(--sbb-animation-easing);
   }
 
   :host([disabled]) & {
