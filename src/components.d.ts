@@ -331,14 +331,15 @@ export namespace Components {
           * A function used to filter out dates.
          */
         "dateFilter": (date: Date | null) => boolean;
+        "focus": () => Promise<void>;
         /**
           * The maximum valid date.
          */
-        "max": Date;
+        "max": Date | string | number;
         /**
           * The minimum valid date.
          */
-        "min": Date;
+        "min": Date | string | number;
         /**
           * The selected date.
          */
@@ -485,6 +486,24 @@ export namespace Components {
         "size": InterfaceSbbCheckboxGroupAttributes['size'];
     }
     interface SbbClock {
+    }
+    interface SbbDatepicker {
+        /**
+          * A function used to filter out dates.
+         */
+        "dateFilter": (date: Date | null) => boolean;
+        /**
+          * The maximum valid date.
+         */
+        "max": Date | string | number;
+        /**
+          * The minimum valid date.
+         */
+        "min": Date | string | number;
+        /**
+          * If set to true, two months are displayed
+         */
+        "wide": boolean;
     }
     interface SbbDialog {
         /**
@@ -1857,6 +1876,12 @@ declare global {
         prototype: HTMLSbbClockElement;
         new (): HTMLSbbClockElement;
     };
+    interface HTMLSbbDatepickerElement extends Components.SbbDatepicker, HTMLStencilElement {
+    }
+    var HTMLSbbDatepickerElement: {
+        prototype: HTMLSbbDatepickerElement;
+        new (): HTMLSbbDatepickerElement;
+    };
     interface HTMLSbbDialogElement extends Components.SbbDialog, HTMLStencilElement {
     }
     var HTMLSbbDialogElement: {
@@ -2238,6 +2263,7 @@ declare global {
         "sbb-checkbox": HTMLSbbCheckboxElement;
         "sbb-checkbox-group": HTMLSbbCheckboxGroupElement;
         "sbb-clock": HTMLSbbClockElement;
+        "sbb-datepicker": HTMLSbbDatepickerElement;
         "sbb-dialog": HTMLSbbDialogElement;
         "sbb-divider": HTMLSbbDividerElement;
         "sbb-footer": HTMLSbbFooterElement;
@@ -2566,11 +2592,11 @@ declare namespace LocalJSX {
         /**
           * The maximum valid date.
          */
-        "max"?: Date;
+        "max"?: Date | string | number;
         /**
           * The minimum valid date.
          */
-        "min"?: Date;
+        "min"?: Date | string | number;
         /**
           * Event emitted on date selection.
          */
@@ -2725,6 +2751,24 @@ declare namespace LocalJSX {
         "size"?: InterfaceSbbCheckboxGroupAttributes['size'];
     }
     interface SbbClock {
+    }
+    interface SbbDatepicker {
+        /**
+          * A function used to filter out dates.
+         */
+        "dateFilter"?: (date: Date | null) => boolean;
+        /**
+          * The maximum valid date.
+         */
+        "max"?: Date | string | number;
+        /**
+          * The minimum valid date.
+         */
+        "min"?: Date | string | number;
+        /**
+          * If set to true, two months are displayed
+         */
+        "wide"?: boolean;
     }
     interface SbbDialog {
         /**
@@ -4010,6 +4054,7 @@ declare namespace LocalJSX {
         "sbb-checkbox": SbbCheckbox;
         "sbb-checkbox-group": SbbCheckboxGroup;
         "sbb-clock": SbbClock;
+        "sbb-datepicker": SbbDatepicker;
         "sbb-dialog": SbbDialog;
         "sbb-divider": SbbDivider;
         "sbb-footer": SbbFooter;
@@ -4091,6 +4136,7 @@ declare module "@stencil/core" {
             "sbb-checkbox": LocalJSX.SbbCheckbox & JSXBase.HTMLAttributes<HTMLSbbCheckboxElement>;
             "sbb-checkbox-group": LocalJSX.SbbCheckboxGroup & JSXBase.HTMLAttributes<HTMLSbbCheckboxGroupElement>;
             "sbb-clock": LocalJSX.SbbClock & JSXBase.HTMLAttributes<HTMLSbbClockElement>;
+            "sbb-datepicker": LocalJSX.SbbDatepicker & JSXBase.HTMLAttributes<HTMLSbbDatepickerElement>;
             "sbb-dialog": LocalJSX.SbbDialog & JSXBase.HTMLAttributes<HTMLSbbDialogElement>;
             "sbb-divider": LocalJSX.SbbDivider & JSXBase.HTMLAttributes<HTMLSbbDividerElement>;
             "sbb-footer": LocalJSX.SbbFooter & JSXBase.HTMLAttributes<HTMLSbbFooterElement>;

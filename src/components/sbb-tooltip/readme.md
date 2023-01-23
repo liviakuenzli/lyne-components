@@ -134,6 +134,10 @@ Type: `Promise<void>`
 
 ## Dependencies
 
+### Used by
+
+ - [sbb-datepicker](../sbb-datepicker)
+
 ### Depends on
 
 - [sbb-button](../sbb-button)
@@ -143,6 +147,7 @@ Type: `Promise<void>`
 graph TD;
   sbb-tooltip --> sbb-button
   sbb-button --> sbb-icon
+  sbb-datepicker --> sbb-tooltip
   style sbb-tooltip fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
