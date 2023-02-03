@@ -24,15 +24,15 @@
 ### Depends on
 
 - [sbb-form-field](../sbb-form-field)
-- [sbb-autocomplete-item](../sbb-autocomplete-item)
+- [sbb-autocomplete-item-deprecated](../sbb-autocomplete-item-deprecated)
 
 ### Graph
 ```mermaid
 graph TD;
-  sbb-autocomplete --> sbb-form-field
-  sbb-autocomplete --> sbb-autocomplete-item
+  sbb-autocomplete-deprecated --> sbb-form-field
+  sbb-autocomplete-deprecated --> sbb-autocomplete-item-deprecated
   sbb-form-field --> sbb-icon
-  style sbb-autocomplete fill:#f9f,stroke:#333,stroke-width:4px
+  style sbb-autocomplete-deprecated fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

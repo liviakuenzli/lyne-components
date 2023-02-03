@@ -5,7 +5,7 @@ import sampleData from './sbb-autocomplete.sample-data';
 
 // ---- Template
 
-const Template = (args) => <sbb-autocomplete {...args}></sbb-autocomplete>;
+const Template = (args) => <sbb-autocomplete-deprecated {...args}></sbb-autocomplete-deprecated>;
 
 // ---- ArgTypes
 const items = {
@@ -160,5 +160,5 @@ export default {
       extractComponentDescription: () => readme,
     },
   },
-  title: 'components/sbb-autocomplete (Unfinished)',
+  title: 'components/sbb-autocomplete (Deprecated)',
 };

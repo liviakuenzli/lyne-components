@@ -9,7 +9,7 @@ import { InterfaceAutocompleteItemAttributes } from './sbb-autocomplete-item.cus
 @Component({
   shadow: true,
   styleUrl: 'sbb-autocomplete-item.scss',
-  tag: 'sbb-autocomplete-item',
+  tag: 'sbb-autocomplete-item-deprecated',
 })
 export class SbbAutocompleteItem {
   /**

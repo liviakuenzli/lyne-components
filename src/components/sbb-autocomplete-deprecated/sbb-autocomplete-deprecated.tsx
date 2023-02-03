@@ -9,9 +9,9 @@ import { documentLanguage, SbbLanguageChangeEvent } from '../../global/helpers/l
 @Component({
   shadow: true,
   styleUrl: 'sbb-autocomplete.scss',
-  tag: 'sbb-autocomplete',
+  tag: 'sbb-autocomplete-deprecated',
 })
-export class SbbAutocomplete implements ComponentInterface {
+export class SbbAutocompleteDeprecated implements ComponentInterface {
   /**
    * Items to show in the autocomplete interface. You should pass a stringified
    * array of objects, containing the `text` key for each object with an
@@ -369,7 +369,7 @@ export class SbbAutocomplete implements ComponentInterface {
           }}
         >
           {this._dataItems.map((item, index) => (
-            <sbb-autocomplete-item
+            <sbb-autocomplete-item-deprecated
               text={item.text}
               highlight={this.value}
               selected={index === this._selectedAutocompleteItemIndex}
