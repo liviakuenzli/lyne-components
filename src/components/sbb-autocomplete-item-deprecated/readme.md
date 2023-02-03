@@ -26,13 +26,13 @@
 
 ### Used by
 
- - [sbb-autocomplete](../sbb-autocomplete)
+ - [sbb-autocomplete-deprecated](../sbb-autocomplete-deprecated)
 
 ### Graph
 ```mermaid
 graph TD;
-  sbb-autocomplete --> sbb-autocomplete-item
-  style sbb-autocomplete-item fill:#f9f,stroke:#333,stroke-width:4px
+  sbb-autocomplete-deprecated --> sbb-autocomplete-item-deprecated
+  style sbb-autocomplete-item-deprecated fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

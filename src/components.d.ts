@@ -196,7 +196,7 @@ export namespace Components {
          */
         "role": InterfaceSbbAlertGroupAttributes['role'];
     }
-    interface SbbAutocomplete {
+    interface SbbAutocompleteDeprecated {
         /**
           * Id which is sent as the id in the eventDetail payload when a value is selected
          */
@@ -238,7 +238,7 @@ export namespace Components {
          */
         "value"?: string;
     }
-    interface SbbAutocompleteItem {
+    interface SbbAutocompleteItemDeprecated {
         /**
           * The aria-posinset attribute for the list element
          */
@@ -1777,17 +1777,17 @@ declare global {
         prototype: HTMLSbbAlertGroupElement;
         new (): HTMLSbbAlertGroupElement;
     };
-    interface HTMLSbbAutocompleteElement extends Components.SbbAutocomplete, HTMLStencilElement {
+    interface HTMLSbbAutocompleteDeprecatedElement extends Components.SbbAutocompleteDeprecated, HTMLStencilElement {
     }
-    var HTMLSbbAutocompleteElement: {
-        prototype: HTMLSbbAutocompleteElement;
-        new (): HTMLSbbAutocompleteElement;
+    var HTMLSbbAutocompleteDeprecatedElement: {
+        prototype: HTMLSbbAutocompleteDeprecatedElement;
+        new (): HTMLSbbAutocompleteDeprecatedElement;
     };
-    interface HTMLSbbAutocompleteItemElement extends Components.SbbAutocompleteItem, HTMLStencilElement {
+    interface HTMLSbbAutocompleteItemDeprecatedElement extends Components.SbbAutocompleteItemDeprecated, HTMLStencilElement {
     }
-    var HTMLSbbAutocompleteItemElement: {
-        prototype: HTMLSbbAutocompleteItemElement;
-        new (): HTMLSbbAutocompleteItemElement;
+    var HTMLSbbAutocompleteItemDeprecatedElement: {
+        prototype: HTMLSbbAutocompleteItemDeprecatedElement;
+        new (): HTMLSbbAutocompleteItemDeprecatedElement;
     };
     interface HTMLSbbButtonElement extends Components.SbbButton, HTMLStencilElement {
     }
@@ -2197,8 +2197,8 @@ declare global {
         "sbb-action-group": HTMLSbbActionGroupElement;
         "sbb-alert": HTMLSbbAlertElement;
         "sbb-alert-group": HTMLSbbAlertGroupElement;
-        "sbb-autocomplete": HTMLSbbAutocompleteElement;
-        "sbb-autocomplete-item": HTMLSbbAutocompleteItemElement;
+        "sbb-autocomplete-deprecated": HTMLSbbAutocompleteDeprecatedElement;
+        "sbb-autocomplete-item-deprecated": HTMLSbbAutocompleteItemDeprecatedElement;
         "sbb-button": HTMLSbbButtonElement;
         "sbb-card": HTMLSbbCardElement;
         "sbb-card-badge": HTMLSbbCardBadgeElement;
@@ -2395,7 +2395,7 @@ declare namespace LocalJSX {
          */
         "role"?: InterfaceSbbAlertGroupAttributes['role'];
     }
-    interface SbbAutocomplete {
+    interface SbbAutocompleteDeprecated {
         /**
           * Id which is sent as the id in the eventDetail payload when a value is selected
          */
@@ -2437,7 +2437,7 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    interface SbbAutocompleteItem {
+    interface SbbAutocompleteItemDeprecated {
         /**
           * The aria-posinset attribute for the list element
          */
@@ -3942,8 +3942,8 @@ declare namespace LocalJSX {
         "sbb-action-group": SbbActionGroup;
         "sbb-alert": SbbAlert;
         "sbb-alert-group": SbbAlertGroup;
-        "sbb-autocomplete": SbbAutocomplete;
-        "sbb-autocomplete-item": SbbAutocompleteItem;
+        "sbb-autocomplete-deprecated": SbbAutocompleteDeprecated;
+        "sbb-autocomplete-item-deprecated": SbbAutocompleteItemDeprecated;
         "sbb-button": SbbButton;
         "sbb-card": SbbCard;
         "sbb-card-badge": SbbCardBadge;
@@ -4022,8 +4022,8 @@ declare module "@stencil/core" {
             "sbb-action-group": LocalJSX.SbbActionGroup & JSXBase.HTMLAttributes<HTMLSbbActionGroupElement>;
             "sbb-alert": LocalJSX.SbbAlert & JSXBase.HTMLAttributes<HTMLSbbAlertElement>;
             "sbb-alert-group": LocalJSX.SbbAlertGroup & JSXBase.HTMLAttributes<HTMLSbbAlertGroupElement>;
-            "sbb-autocomplete": LocalJSX.SbbAutocomplete & JSXBase.HTMLAttributes<HTMLSbbAutocompleteElement>;
-            "sbb-autocomplete-item": LocalJSX.SbbAutocompleteItem & JSXBase.HTMLAttributes<HTMLSbbAutocompleteItemElement>;
+            "sbb-autocomplete-deprecated": LocalJSX.SbbAutocompleteDeprecated & JSXBase.HTMLAttributes<HTMLSbbAutocompleteDeprecatedElement>;
+            "sbb-autocomplete-item-deprecated": LocalJSX.SbbAutocompleteItemDeprecated & JSXBase.HTMLAttributes<HTMLSbbAutocompleteItemDeprecatedElement>;
             "sbb-button": LocalJSX.SbbButton & JSXBase.HTMLAttributes<HTMLSbbButtonElement>;
             "sbb-card": LocalJSX.SbbCard & JSXBase.HTMLAttributes<HTMLSbbCardElement>;
             "sbb-card-badge": LocalJSX.SbbCardBadge & JSXBase.HTMLAttributes<HTMLSbbCardBadgeElement>;
