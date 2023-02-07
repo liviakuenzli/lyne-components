@@ -106,7 +106,7 @@ announce errors when they appear.
 
 ### Used by
 
- - [sbb-autocomplete](../sbb-autocomplete)
+ - [sbb-autocomplete-deprecated](../sbb-autocomplete-deprecated)
 
 ### Depends on
 
@@ -116,7 +116,7 @@ announce errors when they appear.
 ```mermaid
 graph TD;
   sbb-form-field --> sbb-icon
-  sbb-autocomplete --> sbb-form-field
+  sbb-autocomplete-deprecated --> sbb-form-field
   style sbb-form-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
