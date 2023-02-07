@@ -1053,6 +1053,14 @@ export namespace Components {
          */
         "trigger": string | HTMLElement;
     }
+    interface SbbOption {
+        /**
+          * The icon name we want to use, choose from the small icon variants from the ui-icons category from here https://lyne.sbb.ch/tokens/icons/.
+         */
+        "iconName"?: string;
+        "preserveIconSpace"?: boolean;
+        "selected"?: boolean;
+    }
     interface SbbOverlay {
         /**
           * Dismiss the overlay.
@@ -1957,6 +1965,12 @@ declare global {
         prototype: HTMLSbbNavigationSectionElement;
         new (): HTMLSbbNavigationSectionElement;
     };
+    interface HTMLSbbOptionElement extends Components.SbbOption, HTMLStencilElement {
+    }
+    var HTMLSbbOptionElement: {
+        prototype: HTMLSbbOptionElement;
+        new (): HTMLSbbOptionElement;
+    };
     interface HTMLSbbOverlayElement extends Components.SbbOverlay, HTMLStencilElement {
     }
     var HTMLSbbOverlayElement: {
@@ -2227,6 +2241,7 @@ declare global {
         "sbb-navigation-list": HTMLSbbNavigationListElement;
         "sbb-navigation-marker": HTMLSbbNavigationMarkerElement;
         "sbb-navigation-section": HTMLSbbNavigationSectionElement;
+        "sbb-option": HTMLSbbOptionElement;
         "sbb-overlay": HTMLSbbOverlayElement;
         "sbb-pearl-chain": HTMLSbbPearlChainElement;
         "sbb-pearl-chain-time": HTMLSbbPearlChainTimeElement;
@@ -3274,6 +3289,14 @@ declare namespace LocalJSX {
          */
         "trigger"?: string | HTMLElement;
     }
+    interface SbbOption {
+        /**
+          * The icon name we want to use, choose from the small icon variants from the ui-icons category from here https://lyne.sbb.ch/tokens/icons/.
+         */
+        "iconName"?: string;
+        "preserveIconSpace"?: boolean;
+        "selected"?: boolean;
+    }
     interface SbbOverlay {
         "onDidDismiss"?: (event: SbbOverlayCustomEvent<InterfaceOverlayEventDetail>) => void;
         "onDidPresent"?: (event: SbbOverlayCustomEvent<void>) => void;
@@ -3972,6 +3995,7 @@ declare namespace LocalJSX {
         "sbb-navigation-list": SbbNavigationList;
         "sbb-navigation-marker": SbbNavigationMarker;
         "sbb-navigation-section": SbbNavigationSection;
+        "sbb-option": SbbOption;
         "sbb-overlay": SbbOverlay;
         "sbb-pearl-chain": SbbPearlChain;
         "sbb-pearl-chain-time": SbbPearlChainTime;
@@ -4052,6 +4076,7 @@ declare module "@stencil/core" {
             "sbb-navigation-list": LocalJSX.SbbNavigationList & JSXBase.HTMLAttributes<HTMLSbbNavigationListElement>;
             "sbb-navigation-marker": LocalJSX.SbbNavigationMarker & JSXBase.HTMLAttributes<HTMLSbbNavigationMarkerElement>;
             "sbb-navigation-section": LocalJSX.SbbNavigationSection & JSXBase.HTMLAttributes<HTMLSbbNavigationSectionElement>;
+            "sbb-option": LocalJSX.SbbOption & JSXBase.HTMLAttributes<HTMLSbbOptionElement>;
             "sbb-overlay": LocalJSX.SbbOverlay & JSXBase.HTMLAttributes<HTMLSbbOverlayElement>;
             "sbb-pearl-chain": LocalJSX.SbbPearlChain & JSXBase.HTMLAttributes<HTMLSbbPearlChainElement>;
             "sbb-pearl-chain-time": LocalJSX.SbbPearlChainTime & JSXBase.HTMLAttributes<HTMLSbbPearlChainTimeElement>;
