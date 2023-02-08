@@ -13,6 +13,7 @@ export const SbbAccordionItem = /*@__PURE__*/createReactComponent<JSX.SbbAccordi
 export const SbbActionGroup = /*@__PURE__*/createReactComponent<JSX.SbbActionGroup, HTMLSbbActionGroupElement>('sbb-action-group');
 export const SbbAlert = /*@__PURE__*/createReactComponent<JSX.SbbAlert, HTMLSbbAlertElement>('sbb-alert');
 export const SbbAlertGroup = /*@__PURE__*/createReactComponent<JSX.SbbAlertGroup, HTMLSbbAlertGroupElement>('sbb-alert-group');
+export const SbbAutocomplete = /*@__PURE__*/createReactComponent<JSX.SbbAutocomplete, HTMLSbbAutocompleteElement>('sbb-autocomplete');
 export const SbbAutocompleteDeprecated = /*@__PURE__*/createReactComponent<JSX.SbbAutocompleteDeprecated, HTMLSbbAutocompleteDeprecatedElement>('sbb-autocomplete-deprecated');
 export const SbbAutocompleteItemDeprecated = /*@__PURE__*/createReactComponent<JSX.SbbAutocompleteItemDeprecated, HTMLSbbAutocompleteItemDeprecatedElement>('sbb-autocomplete-item-deprecated');
 export const SbbButton = /*@__PURE__*/createReactComponent<JSX.SbbButton, HTMLSbbButtonElement>('sbb-button');
