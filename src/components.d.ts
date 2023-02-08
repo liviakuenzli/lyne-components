@@ -489,9 +489,21 @@ export namespace Components {
     }
     interface SbbDatepicker {
         /**
+          * This will be forwarded as aria-label to the relevant nested element.
+         */
+        "accessibilityLabel": string | undefined;
+        /**
           * A function used to filter out dates.
          */
         "dateFilter": (date: Date | null) => boolean;
+        /**
+          * Disabled state for the inner HTMLInputElement.
+         */
+        "disabled"?: boolean;
+        /**
+          * The <form> element to associate the inner HTMLInputElement with.
+         */
+        "form"?: string;
         /**
           * The maximum valid date.
          */
@@ -501,9 +513,43 @@ export namespace Components {
          */
         "min": Date | string | number;
         /**
+          * Readonly state for the inner HTMLInputElement.
+         */
+        "readonly"?: boolean;
+        /**
+          * Required state for the inner HTMLInputElement.
+         */
+        "required"?: boolean;
+        /**
+          * Value for the inner HTMLInputElement.
+         */
+        "value"?: string;
+        /**
+          * Date value with the given time for the inner HTMLInputElement.
+         */
+        "valueAsDate"?: Date;
+        /**
           * If set to true, two months are displayed
          */
         "wide": boolean;
+    }
+    interface SbbDatepickerNextDay {
+        /**
+          * Datepicker reference
+         */
+        "datePicker"?: string | HTMLElement;
+    }
+    interface SbbDatepickerPreviousDay {
+        /**
+          * Datepicker reference
+         */
+        "datePicker"?: string | HTMLElement;
+    }
+    interface SbbDatepickerToggle {
+        /**
+          * Datepicker reference
+         */
+        "datePicker"?: string | HTMLElement;
     }
     interface SbbDialog {
         /**
@@ -1735,6 +1781,10 @@ export interface SbbCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLSbbCheckboxElement;
 }
+export interface SbbDatepickerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSbbDatepickerElement;
+}
 export interface SbbDialogCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLSbbDialogElement;
@@ -1881,6 +1931,24 @@ declare global {
     var HTMLSbbDatepickerElement: {
         prototype: HTMLSbbDatepickerElement;
         new (): HTMLSbbDatepickerElement;
+    };
+    interface HTMLSbbDatepickerNextDayElement extends Components.SbbDatepickerNextDay, HTMLStencilElement {
+    }
+    var HTMLSbbDatepickerNextDayElement: {
+        prototype: HTMLSbbDatepickerNextDayElement;
+        new (): HTMLSbbDatepickerNextDayElement;
+    };
+    interface HTMLSbbDatepickerPreviousDayElement extends Components.SbbDatepickerPreviousDay, HTMLStencilElement {
+    }
+    var HTMLSbbDatepickerPreviousDayElement: {
+        prototype: HTMLSbbDatepickerPreviousDayElement;
+        new (): HTMLSbbDatepickerPreviousDayElement;
+    };
+    interface HTMLSbbDatepickerToggleElement extends Components.SbbDatepickerToggle, HTMLStencilElement {
+    }
+    var HTMLSbbDatepickerToggleElement: {
+        prototype: HTMLSbbDatepickerToggleElement;
+        new (): HTMLSbbDatepickerToggleElement;
     };
     interface HTMLSbbDialogElement extends Components.SbbDialog, HTMLStencilElement {
     }
@@ -2264,6 +2332,9 @@ declare global {
         "sbb-checkbox-group": HTMLSbbCheckboxGroupElement;
         "sbb-clock": HTMLSbbClockElement;
         "sbb-datepicker": HTMLSbbDatepickerElement;
+        "sbb-datepicker-next-day": HTMLSbbDatepickerNextDayElement;
+        "sbb-datepicker-previous-day": HTMLSbbDatepickerPreviousDayElement;
+        "sbb-datepicker-toggle": HTMLSbbDatepickerToggleElement;
         "sbb-dialog": HTMLSbbDialogElement;
         "sbb-divider": HTMLSbbDividerElement;
         "sbb-footer": HTMLSbbFooterElement;
@@ -2754,9 +2825,21 @@ declare namespace LocalJSX {
     }
     interface SbbDatepicker {
         /**
+          * This will be forwarded as aria-label to the relevant nested element.
+         */
+        "accessibilityLabel"?: string | undefined;
+        /**
           * A function used to filter out dates.
          */
         "dateFilter"?: (date: Date | null) => boolean;
+        /**
+          * Disabled state for the inner HTMLInputElement.
+         */
+        "disabled"?: boolean;
+        /**
+          * The <form> element to associate the inner HTMLInputElement with.
+         */
+        "form"?: string;
         /**
           * The maximum valid date.
          */
@@ -2765,10 +2848,49 @@ declare namespace LocalJSX {
           * The minimum valid date.
          */
         "min"?: Date | string | number;
+        "onChange"?: (event: SbbDatepickerCustomEvent<any>) => void;
+        /**
+          * @deprecated only used for React. Will probably be removed once React 19 is available.
+         */
+        "onDidChange"?: (event: SbbDatepickerCustomEvent<any>) => void;
+        /**
+          * Readonly state for the inner HTMLInputElement.
+         */
+        "readonly"?: boolean;
+        /**
+          * Required state for the inner HTMLInputElement.
+         */
+        "required"?: boolean;
+        /**
+          * Value for the inner HTMLInputElement.
+         */
+        "value"?: string;
+        /**
+          * Date value with the given time for the inner HTMLInputElement.
+         */
+        "valueAsDate"?: Date;
         /**
           * If set to true, two months are displayed
          */
         "wide"?: boolean;
+    }
+    interface SbbDatepickerNextDay {
+        /**
+          * Datepicker reference
+         */
+        "datePicker"?: string | HTMLElement;
+    }
+    interface SbbDatepickerPreviousDay {
+        /**
+          * Datepicker reference
+         */
+        "datePicker"?: string | HTMLElement;
+    }
+    interface SbbDatepickerToggle {
+        /**
+          * Datepicker reference
+         */
+        "datePicker"?: string | HTMLElement;
     }
     interface SbbDialog {
         /**
@@ -4055,6 +4177,9 @@ declare namespace LocalJSX {
         "sbb-checkbox-group": SbbCheckboxGroup;
         "sbb-clock": SbbClock;
         "sbb-datepicker": SbbDatepicker;
+        "sbb-datepicker-next-day": SbbDatepickerNextDay;
+        "sbb-datepicker-previous-day": SbbDatepickerPreviousDay;
+        "sbb-datepicker-toggle": SbbDatepickerToggle;
         "sbb-dialog": SbbDialog;
         "sbb-divider": SbbDivider;
         "sbb-footer": SbbFooter;
@@ -4137,6 +4262,9 @@ declare module "@stencil/core" {
             "sbb-checkbox-group": LocalJSX.SbbCheckboxGroup & JSXBase.HTMLAttributes<HTMLSbbCheckboxGroupElement>;
             "sbb-clock": LocalJSX.SbbClock & JSXBase.HTMLAttributes<HTMLSbbClockElement>;
             "sbb-datepicker": LocalJSX.SbbDatepicker & JSXBase.HTMLAttributes<HTMLSbbDatepickerElement>;
+            "sbb-datepicker-next-day": LocalJSX.SbbDatepickerNextDay & JSXBase.HTMLAttributes<HTMLSbbDatepickerNextDayElement>;
+            "sbb-datepicker-previous-day": LocalJSX.SbbDatepickerPreviousDay & JSXBase.HTMLAttributes<HTMLSbbDatepickerPreviousDayElement>;
+            "sbb-datepicker-toggle": LocalJSX.SbbDatepickerToggle & JSXBase.HTMLAttributes<HTMLSbbDatepickerToggleElement>;
             "sbb-dialog": LocalJSX.SbbDialog & JSXBase.HTMLAttributes<HTMLSbbDialogElement>;
             "sbb-divider": LocalJSX.SbbDivider & JSXBase.HTMLAttributes<HTMLSbbDividerElement>;
             "sbb-footer": LocalJSX.SbbFooter & JSXBase.HTMLAttributes<HTMLSbbFooterElement>;

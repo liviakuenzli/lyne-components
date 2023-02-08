@@ -136,7 +136,7 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [sbb-datepicker](../sbb-datepicker)
+ - [sbb-datepicker-toggle](../sbb-datepicker-toggle)
 
 ### Depends on
 
@@ -147,7 +147,7 @@ Type: `Promise<void>`
 graph TD;
   sbb-tooltip --> sbb-button
   sbb-button --> sbb-icon
-  sbb-datepicker --> sbb-tooltip
+  sbb-datepicker-toggle --> sbb-tooltip
   style sbb-tooltip fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -75,7 +75,7 @@ To make screen readers announce the tooltip content when the trigger is focused,
 
 ### Used by
 
- - [sbb-datepicker](../sbb-datepicker)
+ - [sbb-datepicker-toggle](../sbb-datepicker-toggle)
 
 ### Depends on
 
@@ -85,7 +85,7 @@ To make screen readers announce the tooltip content when the trigger is focused,
 ```mermaid
 graph TD;
   sbb-tooltip-trigger --> sbb-icon
-  sbb-datepicker --> sbb-tooltip-trigger
+  sbb-datepicker-toggle --> sbb-tooltip-trigger
   style sbb-tooltip-trigger fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
