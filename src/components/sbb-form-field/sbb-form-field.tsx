@@ -171,7 +171,9 @@ export class SbbFormField implements ComponentInterface {
       <div class="sbb-form-field__space-wrapper">
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
         <div onClick={(): void => this._input?.focus()} class="sbb-form-field__wrapper">
-          <slot name="prefix"></slot>
+          <div class="sbb-form-field__slot">
+            <slot name="prefix"></slot>
+          </div>
 
           <div class="sbb-form-field__input-container">
             {(this.label || this._namedSlots.label) && (
@@ -194,8 +196,9 @@ export class SbbFormField implements ComponentInterface {
               ></sbb-icon>
             )}
           </div>
-
-          <slot name="suffix"></slot>
+          <div class="sbb-form-field__slot">
+            <slot name="suffix"></slot>
+          </div>
         </div>
 
         <div class="sbb-form-field__error">
