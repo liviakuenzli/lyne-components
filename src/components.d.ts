@@ -11,6 +11,7 @@ import { InterfaceAlertAttributes } from "./components/sbb-alert/sbb-alert.custo
 import { InterfaceTitleAttributes } from "./components/sbb-title/sbb-title.custom";
 import { ButtonType, LinkTargetType, PopupType } from "./global/interfaces/link-button-properties";
 import { InterfaceSbbAlertGroupAttributes } from "./components/sbb-alert-group/sbb-alert-group.custom";
+import { InterfaceSbbAutocompleteAttributes } from "./components/sbb-autocomplete/sbb-autocomplete.custom.d";
 import { InterfaceButtonAttributes } from "./components/sbb-button/sbb-button.custom";
 import { InterfaceSbbCardAttributes } from "./components/sbb-card/sbb-card.custom";
 import { InterfaceCardBadgeAttributes } from "./components/sbb-card-badge/sbb-card-badge.custom";
@@ -195,6 +196,12 @@ export namespace Components {
           * The role attribute defines how to announce alerts to the user.  'status': sets aria-live to polite and aria-atomic to true. 'alert': sets aria-live to assertive and aria-atomic to true.
          */
         "role": InterfaceSbbAlertGroupAttributes['role'];
+    }
+    interface SbbAutocomplete {
+        /**
+          * Documentation for someProp
+         */
+        "someProp"?: InterfaceSbbAutocompleteAttributes['someInterface'];
     }
     interface SbbAutocompleteDeprecated {
         /**
@@ -1788,6 +1795,12 @@ declare global {
         prototype: HTMLSbbAlertGroupElement;
         new (): HTMLSbbAlertGroupElement;
     };
+    interface HTMLSbbAutocompleteElement extends Components.SbbAutocomplete, HTMLStencilElement {
+    }
+    var HTMLSbbAutocompleteElement: {
+        prototype: HTMLSbbAutocompleteElement;
+        new (): HTMLSbbAutocompleteElement;
+    };
     interface HTMLSbbAutocompleteDeprecatedElement extends Components.SbbAutocompleteDeprecated, HTMLStencilElement {
     }
     var HTMLSbbAutocompleteDeprecatedElement: {
@@ -2214,6 +2227,7 @@ declare global {
         "sbb-action-group": HTMLSbbActionGroupElement;
         "sbb-alert": HTMLSbbAlertElement;
         "sbb-alert-group": HTMLSbbAlertGroupElement;
+        "sbb-autocomplete": HTMLSbbAutocompleteElement;
         "sbb-autocomplete-deprecated": HTMLSbbAutocompleteDeprecatedElement;
         "sbb-autocomplete-item-deprecated": HTMLSbbAutocompleteItemDeprecatedElement;
         "sbb-button": HTMLSbbButtonElement;
@@ -2412,6 +2426,12 @@ declare namespace LocalJSX {
           * The role attribute defines how to announce alerts to the user.  'status': sets aria-live to polite and aria-atomic to true. 'alert': sets aria-live to assertive and aria-atomic to true.
          */
         "role"?: InterfaceSbbAlertGroupAttributes['role'];
+    }
+    interface SbbAutocomplete {
+        /**
+          * Documentation for someProp
+         */
+        "someProp"?: InterfaceSbbAutocompleteAttributes['someInterface'];
     }
     interface SbbAutocompleteDeprecated {
         /**
@@ -3971,6 +3991,7 @@ declare namespace LocalJSX {
         "sbb-action-group": SbbActionGroup;
         "sbb-alert": SbbAlert;
         "sbb-alert-group": SbbAlertGroup;
+        "sbb-autocomplete": SbbAutocomplete;
         "sbb-autocomplete-deprecated": SbbAutocompleteDeprecated;
         "sbb-autocomplete-item-deprecated": SbbAutocompleteItemDeprecated;
         "sbb-button": SbbButton;
@@ -4052,6 +4073,7 @@ declare module "@stencil/core" {
             "sbb-action-group": LocalJSX.SbbActionGroup & JSXBase.HTMLAttributes<HTMLSbbActionGroupElement>;
             "sbb-alert": LocalJSX.SbbAlert & JSXBase.HTMLAttributes<HTMLSbbAlertElement>;
             "sbb-alert-group": LocalJSX.SbbAlertGroup & JSXBase.HTMLAttributes<HTMLSbbAlertGroupElement>;
+            "sbb-autocomplete": LocalJSX.SbbAutocomplete & JSXBase.HTMLAttributes<HTMLSbbAutocompleteElement>;
             "sbb-autocomplete-deprecated": LocalJSX.SbbAutocompleteDeprecated & JSXBase.HTMLAttributes<HTMLSbbAutocompleteDeprecatedElement>;
             "sbb-autocomplete-item-deprecated": LocalJSX.SbbAutocompleteItemDeprecated & JSXBase.HTMLAttributes<HTMLSbbAutocompleteItemDeprecatedElement>;
             "sbb-button": LocalJSX.SbbButton & JSXBase.HTMLAttributes<HTMLSbbButtonElement>;
