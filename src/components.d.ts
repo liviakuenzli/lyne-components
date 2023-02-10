@@ -343,7 +343,7 @@ export namespace Components {
         /**
           * The selected date.
          */
-        "selectedDate": Date;
+        "selectedDate": Date | string | number;
         /**
           * If set to true, two months are displayed
          */
@@ -2675,7 +2675,7 @@ declare namespace LocalJSX {
         /**
           * The selected date.
          */
-        "selectedDate"?: Date;
+        "selectedDate"?: Date | string | number;
         /**
           * If set to true, two months are displayed
          */
