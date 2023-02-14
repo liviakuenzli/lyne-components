@@ -11,7 +11,6 @@ import { InterfaceAlertAttributes } from "./components/sbb-alert/sbb-alert.custo
 import { InterfaceTitleAttributes } from "./components/sbb-title/sbb-title.custom";
 import { ButtonType, LinkTargetType, PopupType } from "./global/interfaces/link-button-properties";
 import { InterfaceSbbAlertGroupAttributes } from "./components/sbb-alert-group/sbb-alert-group.custom";
-import { InterfaceSbbAutocompleteAttributes } from "./components/sbb-autocomplete/sbb-autocomplete.custom.d";
 import { InterfaceButtonAttributes } from "./components/sbb-button/sbb-button.custom";
 import { InterfaceSbbCardAttributes } from "./components/sbb-card/sbb-card.custom";
 import { InterfaceCardBadgeAttributes } from "./components/sbb-card-badge/sbb-card-badge.custom";
@@ -46,46 +45,6 @@ import { InterfaceToggleCheckAttributes } from "./components/sbb-toggle-check/sb
 import { StateChange } from "./components/sbb-toggle-option/sbb-toggle-option.custom";
 import { InterfaceSbbTrainAttributes } from "./components/sbb-train/sbb-train.custom.d";
 import { InterfaceSbbWagonAttributes } from "./components/sbb-wagon/sbb-wagon.custom.d";
-export { InterfaceAccordionItemAttributes } from "./components/sbb-accordion-item/sbb-accordion-item.custom";
-export { InterfaceSbbActionGroupAttributes } from "./components/sbb-action-group/sbb-action-group.custom";
-export { InterfaceAlertAttributes } from "./components/sbb-alert/sbb-alert.custom";
-export { InterfaceTitleAttributes } from "./components/sbb-title/sbb-title.custom";
-export { ButtonType, LinkTargetType, PopupType } from "./global/interfaces/link-button-properties";
-export { InterfaceSbbAlertGroupAttributes } from "./components/sbb-alert-group/sbb-alert-group.custom";
-export { InterfaceButtonAttributes } from "./components/sbb-button/sbb-button.custom";
-export { InterfaceSbbCardAttributes } from "./components/sbb-card/sbb-card.custom";
-export { InterfaceCardBadgeAttributes } from "./components/sbb-card-badge/sbb-card-badge.custom";
-export { InterfaceSbbCheckboxAttributes } from "./components/sbb-checkbox/sbb-checkbox.custom";
-export { InterfaceSbbCheckboxGroupAttributes } from "./components/sbb-checkbox-group/sbb-checkbox-group.custom";
-export { InterfaceSbbDividerAttributes } from "./components/sbb-divider/sbb-divider.custom.d";
-export { InterfaceFooterAttributes } from "./components/sbb-footer/sbb-footer.custom";
-export { InterfaceSbbFormFieldAttributes } from "./components/sbb-form-field/sbb-form-field.custom";
-export { InterfaceSbbGroupAttributes } from "./components/sbb-group/sbb-group.custom.d";
-export { InterfaceSbbHeaderActionAttributes } from "./components/sbb-header-action/sbb-header-action.custom";
-export { InterfaceImageAttributes } from "./components/sbb-image/sbb-image.custom";
-export { InterfaceJourneyHeaderAttributes } from "./components/sbb-journey-header/sbb-journey-header.custom";
-export { InterfaceSbbJourneySummaryAttributes } from "./components/sbb-journey-summary/sbb-journey-summary.custom";
-export { InterfaceLinkAttributes } from "./components/sbb-link/sbb-link.custom";
-export { InterfaceTitleAttributes as InterfaceTitleAttributes1 } from "./components/sbb-title/sbb-title.custom.d";
-export { InterfaceLinkListAttributes } from "./components/sbb-link-list/sbb-link-list.custom";
-export { InterfaceLogoAttributes } from "./components/sbb-logo/sbb-logo.custom";
-export { InterfaceOverlayEventDetail } from "./global/core/components/overlay/overlays-interface";
-export { PtRideLeg } from "./global/interfaces/pearl-chain-properties";
-export { PearlChainVerticalItemAttributes } from "./components/sbb-pearl-chain-vertical-item/sbb-pearl-chain-vertical-item.custom";
-export { InterfaceSbbRadioButtonAttributes } from "./components/sbb-radio-button/sbb-radio-button.custom";
-export { InterfaceSbbRadioButtonGroupAttributes } from "./components/sbb-radio-button-group/sbb-radio-button-group.custom";
-export { InterfaceSignetAttributes } from "./components/sbb-signet/sbb-signet.custom";
-export { InterfaceTabTitleAttributes } from "./components/sbb-tab-title/sbb-tab-title.custom";
-export { InterfaceTimetableParkAndRailAttributes } from "./components/sbb-timetable-park-and-rail/sbb-timetable-park-and-rail.custom";
-export { Boarding, Price, Trip } from "./components/sbb-timetable-row/sbb-timetable-row.custom";
-export { InterfaceTimetableTransportationNumberAttributes } from "./components/sbb-timetable-transportation-number/sbb-timetable-transportation-number.custom";
-export { InterfaceTimetableTransportationTimeAttributes } from "./components/sbb-timetable-transportation-time/sbb-timetable-transportation-time.custom";
-export { InterfaceTimetableTravelHintsAttributes } from "./components/sbb-timetable-travel-hints/sbb-timetable-travel-hints.custom";
-export { InterfaceSbbToggleAttributes } from "./components/sbb-toggle/sbb-toggle.custom";
-export { InterfaceToggleCheckAttributes } from "./components/sbb-toggle-check/sbb-toggle-check.custom";
-export { StateChange } from "./components/sbb-toggle-option/sbb-toggle-option.custom";
-export { InterfaceSbbTrainAttributes } from "./components/sbb-train/sbb-train.custom.d";
-export { InterfaceSbbWagonAttributes } from "./components/sbb-wagon/sbb-wagon.custom.d";
 export namespace Components {
     interface SbbAccordion {
         /**
@@ -199,9 +158,21 @@ export namespace Components {
     }
     interface SbbAutocomplete {
         /**
-          * Documentation for someProp
+          * Closes the autocomplete.
          */
-        "someProp"?: InterfaceSbbAutocompleteAttributes['someInterface'];
+        "close": () => Promise<void>;
+        /**
+          * Opens the autocomplete on trigger click.
+         */
+        "open": () => Promise<void>;
+        /**
+          * The element where the autocomplete will attach. Accepts both a string (id of an element) or an HTML element.  If not setted, will search for the first 'sbb-form-field' ancestor
+         */
+        "origin": string | HTMLElement;
+        /**
+          * The element that will trigger the autocomplete opening. Accepts both a string (id of an element) or an HTML element.  If not setted, will search for the first 'input' child of 'origin'
+         */
+        "trigger": string | HTMLElement;
     }
     interface SbbAutocompleteDeprecated {
         /**
@@ -1704,6 +1675,10 @@ export interface SbbAlertGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLSbbAlertGroupElement;
 }
+export interface SbbAutocompleteCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSbbAutocompleteElement;
+}
 export interface SbbCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLSbbCheckboxElement;
@@ -2429,9 +2404,29 @@ declare namespace LocalJSX {
     }
     interface SbbAutocomplete {
         /**
-          * Documentation for someProp
+          * Emits whenever the menu is closed.
          */
-        "someProp"?: InterfaceSbbAutocompleteAttributes['someInterface'];
+        "onDid-close"?: (event: SbbAutocompleteCustomEvent<void>) => void;
+        /**
+          * Emits whenever the menu is opened.
+         */
+        "onDid-open"?: (event: SbbAutocompleteCustomEvent<void>) => void;
+        /**
+          * Emits whenever the menu begins the closing transition.
+         */
+        "onWill-close"?: (event: SbbAutocompleteCustomEvent<void>) => void;
+        /**
+          * Emits whenever the menu starts the opening transition.
+         */
+        "onWill-open"?: (event: SbbAutocompleteCustomEvent<void>) => void;
+        /**
+          * The element where the autocomplete will attach. Accepts both a string (id of an element) or an HTML element.  If not setted, will search for the first 'sbb-form-field' ancestor
+         */
+        "origin"?: string | HTMLElement;
+        /**
+          * The element that will trigger the autocomplete opening. Accepts both a string (id of an element) or an HTML element.  If not setted, will search for the first 'input' child of 'origin'
+         */
+        "trigger"?: string | HTMLElement;
     }
     interface SbbAutocompleteDeprecated {
         /**
