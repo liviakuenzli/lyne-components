@@ -331,7 +331,7 @@ export namespace Components {
           * A function used to filter out dates.
          */
         "dateFilter": (date: Date | null) => boolean;
-        "focus": () => Promise<void>;
+        "focus": () => void;
         /**
           * The maximum valid date.
          */
