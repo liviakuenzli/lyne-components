@@ -1704,7 +1704,7 @@ export namespace Components {
     }
     interface SbbTooltipTrigger {
         /**
-          * Whether the tooltip-trigger is disabled
+          * Whether the tooltip-trigger is disabled.
          */
         "disabled": boolean;
         /**
@@ -4102,7 +4102,7 @@ declare namespace LocalJSX {
     }
     interface SbbTooltipTrigger {
         /**
-          * Whether the tooltip-trigger is disabled
+          * Whether the tooltip-trigger is disabled.
          */
         "disabled"?: boolean;
         /**
