@@ -340,6 +340,7 @@ export namespace Components {
           * The minimum valid date.
          */
         "min": Date | string | number;
+        "resetPosition": () => Promise<void>;
         /**
           * The selected date.
          */
