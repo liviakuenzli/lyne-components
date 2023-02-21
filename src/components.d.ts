@@ -16,6 +16,7 @@ import { InterfaceSbbCardAttributes } from "./components/sbb-card/sbb-card.custo
 import { InterfaceCardBadgeAttributes } from "./components/sbb-card-badge/sbb-card-badge.custom";
 import { InterfaceSbbCheckboxAttributes } from "./components/sbb-checkbox/sbb-checkbox.custom";
 import { InterfaceSbbCheckboxGroupAttributes } from "./components/sbb-checkbox-group/sbb-checkbox-group.custom";
+import { InputUpdateEvent } from "./components/sbb-datepicker/sbb-datepicker.helper";
 import { InterfaceSbbDividerAttributes } from "./components/sbb-divider/sbb-divider.custom.d";
 import { InterfaceFooterAttributes } from "./components/sbb-footer/sbb-footer.custom";
 import { InterfaceSbbFormFieldAttributes } from "./components/sbb-form-field/sbb-form-field.custom";
@@ -56,6 +57,7 @@ export { InterfaceSbbCardAttributes } from "./components/sbb-card/sbb-card.custo
 export { InterfaceCardBadgeAttributes } from "./components/sbb-card-badge/sbb-card-badge.custom";
 export { InterfaceSbbCheckboxAttributes } from "./components/sbb-checkbox/sbb-checkbox.custom";
 export { InterfaceSbbCheckboxGroupAttributes } from "./components/sbb-checkbox-group/sbb-checkbox-group.custom";
+export { InputUpdateEvent } from "./components/sbb-datepicker/sbb-datepicker.helper";
 export { InterfaceSbbDividerAttributes } from "./components/sbb-divider/sbb-divider.custom.d";
 export { InterfaceFooterAttributes } from "./components/sbb-footer/sbb-footer.custom";
 export { InterfaceSbbFormFieldAttributes } from "./components/sbb-form-field/sbb-form-field.custom";
@@ -490,21 +492,11 @@ export namespace Components {
     }
     interface SbbDatepicker {
         /**
-          * This will be forwarded as aria-label to the relevant nested element.
-         */
-        "accessibilityLabel": string | undefined;
-        /**
           * A function used to filter out dates.
          */
         "dateFilter": (date: Date | null) => boolean;
-        /**
-          * Disabled state for the inner HTMLInputElement.
-         */
-        "disabled"?: boolean;
-        /**
-          * The <form> element to associate the inner HTMLInputElement with.
-         */
-        "form"?: string;
+        "getValueAsDate": () => Promise<Date>;
+        "input"?: string | HTMLElement;
         /**
           * The maximum valid date.
          */
@@ -513,22 +505,7 @@ export namespace Components {
           * The minimum valid date.
          */
         "min": Date | string | number;
-        /**
-          * Readonly state for the inner HTMLInputElement.
-         */
-        "readonly"?: boolean;
-        /**
-          * Required state for the inner HTMLInputElement.
-         */
-        "required"?: boolean;
-        /**
-          * Value for the inner HTMLInputElement.
-         */
-        "value"?: string;
-        /**
-          * Date value with the given time for the inner HTMLInputElement.
-         */
-        "valueAsDate"?: Date;
+        "setValueAsDate": (date: Date) => Promise<void>;
         /**
           * If set to true, two months are displayed
          */
@@ -2826,21 +2803,10 @@ declare namespace LocalJSX {
     }
     interface SbbDatepicker {
         /**
-          * This will be forwarded as aria-label to the relevant nested element.
-         */
-        "accessibilityLabel"?: string | undefined;
-        /**
           * A function used to filter out dates.
          */
         "dateFilter"?: (date: Date | null) => boolean;
-        /**
-          * Disabled state for the inner HTMLInputElement.
-         */
-        "disabled"?: boolean;
-        /**
-          * The <form> element to associate the inner HTMLInputElement with.
-         */
-        "form"?: string;
+        "input"?: string | HTMLElement;
         /**
           * The maximum valid date.
          */
@@ -2850,27 +2816,12 @@ declare namespace LocalJSX {
          */
         "min"?: Date | string | number;
         "onChange"?: (event: SbbDatepickerCustomEvent<any>) => void;
+        "onDatePickerUpdated"?: (event: SbbDatepickerCustomEvent<any>) => void;
         /**
           * @deprecated only used for React. Will probably be removed once React 19 is available.
          */
         "onDidChange"?: (event: SbbDatepickerCustomEvent<any>) => void;
-        "onDidRender"?: (event: SbbDatepickerCustomEvent<any>) => void;
-        /**
-          * Readonly state for the inner HTMLInputElement.
-         */
-        "readonly"?: boolean;
-        /**
-          * Required state for the inner HTMLInputElement.
-         */
-        "required"?: boolean;
-        /**
-          * Value for the inner HTMLInputElement.
-         */
-        "value"?: string;
-        /**
-          * Date value with the given time for the inner HTMLInputElement.
-         */
-        "valueAsDate"?: Date;
+        "onInputUpdated"?: (event: SbbDatepickerCustomEvent<InputUpdateEvent>) => void;
         /**
           * If set to true, two months are displayed
          */
