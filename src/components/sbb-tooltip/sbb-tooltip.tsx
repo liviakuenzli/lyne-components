@@ -14,7 +14,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { Alignment, getElementPosition, isEventOnElement } from '../../global/helpers/position';
-import { IS_FOCUSABLE_QUERY, FocusTrap } from '../../global/helpers/focus';
+import { FocusTrap, getFocusableElements } from '../../global/helpers/focus';
 import { i18nCloseTooltip } from '../../global/i18n';
 import { documentLanguage, SbbLanguageChangeEvent } from '../../global/helpers/language';
 import { isValidAttribute } from '../../global/helpers/is-valid-attribute';
@@ -45,6 +45,11 @@ export class SbbTooltip implements ComponentInterface {
    * Accepts both a string (id of an element) or an HTML element.
    */
   @Prop() public trigger: string | HTMLElement;
+
+  /**
+   * Whether the close button should be hidden.
+   */
+  @Prop() public hideCloseButton?: boolean = false;
 
   /**
    * Whether the tooltip should be triggered on hover.
@@ -399,9 +404,9 @@ export class SbbTooltip implements ComponentInterface {
   // Set focus on the first focusable element.
   private _setTooltipFocus(): void {
     this._prevFocusedElement = document.activeElement as HTMLElement;
-    this._firstFocusable =
-      this._element.querySelector(IS_FOCUSABLE_QUERY) ||
-      this._element.shadowRoot.querySelector('[sbb-tooltip-close]');
+    this._firstFocusable = getFocusableElements(
+      Array.from(this._element.shadowRoot.querySelectorAll('*'))
+    )[0];
 
     if (this._openedByKeyboard) {
       this._firstFocusable?.focus();
@@ -478,7 +483,7 @@ export class SbbTooltip implements ComponentInterface {
               <span>
                 <slot>No content</slot>
               </span>
-              {!this._hoverTrigger && closeButton}
+              {!this.hideCloseButton && !this._hoverTrigger && closeButton}
             </div>
           </dialog>
         </div>

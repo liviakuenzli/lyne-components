@@ -166,11 +166,27 @@ export class SbbFormField implements ComponentInterface {
     this._input?.setAttribute('aria-describedby', value);
   }
 
+  private _setInputFocus(event: Event): void {
+    const composedPathElements = event
+      .composedPath()
+      .filter((el) => el instanceof window.HTMLElement);
+
+    const isPopup = composedPathElements.some(
+      (el) =>
+        isValidAttribute(el as HTMLElement, 'aria-haspopup') ||
+        (el as HTMLElement).tagName === 'SBB-TOOLTIP'
+    );
+
+    if (!isPopup) {
+      this._input?.focus();
+    }
+  }
+
   public render(): JSX.Element {
     return (
       <div class="sbb-form-field__space-wrapper">
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div onClick={(): void => this._input?.focus()} class="sbb-form-field__wrapper">
+        <div onClick={(event) => this._setInputFocus(event)} class="sbb-form-field__wrapper">
           <slot name="prefix"></slot>
 
           <div class="sbb-form-field__input-container">
