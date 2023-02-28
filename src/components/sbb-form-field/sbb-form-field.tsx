@@ -163,7 +163,7 @@ export class SbbFormField implements ComponentInterface {
     const value = this._errorElements.length
       ? this._errorElements.map((e) => e.id).join(',')
       : this._originalInputAriaDescribedby;
-    this._input?.setAttribute('aria-describedby', value);
+    value && this._input?.setAttribute('aria-describedby', value);
   }
 
   public render(): JSX.Element {

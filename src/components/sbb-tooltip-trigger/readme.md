@@ -33,10 +33,11 @@ The examples below shows how to use the component with the `<sbb-icon>` and cust
 ```
 
 ### Accessibility
-In order to make screen readers announce the type of the trigger when is focused, provide the `aria-label` attribute inside the `<sbb-tooltip-trigger>` as shown below:
+In order to make screen readers announce the type of the trigger when is focused, use the `accessibilityLabel` property 
+or the `accessibility-label` attribute, as shown below:
 
 ```html
-<sbb-tooltip-trigger aria-label="Custom label" id="tooltip-trigger">
+<sbb-tooltip-trigger accessibility-label="Custom label" id="tooltip-trigger">
 </sbb-tooltip-trigger>
 ```
 
@@ -58,10 +59,11 @@ To make screen readers announce the tooltip content when the trigger is focused,
 
 ## Properties
 
-| Property   | Attribute   | Description                                                                                                                               | Type      | Default                      |
-| ---------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------- |
-| `disabled` | `disabled`  | Whether the tooltip-trigger is disabled.                                                                                                  | `boolean` | `false`                      |
-| `iconName` | `icon-name` | The icon name we want to use, choose from the small icon variants from the ui-icons category from here https://lyne.sbb.ch/tokens/icons/. | `string`  | `'circle-information-small'` |
+| Property             | Attribute             | Description                                                                                                                               | Type      | Default                      |
+| -------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------- |
+| `accessibilityLabel` | `accessibility-label` | This will be forwarded as aria-label to the relevant nested element.                                                                      | `string`  | `undefined`                  |
+| `disabled`           | `disabled`            | Whether the tooltip-trigger is disabled.                                                                                                  | `boolean` | `false`                      |
+| `iconName`           | `icon-name`           | The icon name we want to use, choose from the small icon variants from the ui-icons category from here https://lyne.sbb.ch/tokens/icons/. | `string`  | `'circle-information-small'` |
 
 
 ## Slots
