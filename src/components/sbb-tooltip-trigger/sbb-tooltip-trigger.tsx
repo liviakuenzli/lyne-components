@@ -1,4 +1,4 @@
-import { Component, ComponentInterface, h, Host, JSX, Prop } from '@stencil/core';
+import { Component, ComponentInterface, h, JSX, Prop } from '@stencil/core';
 import { AccessibilityProperties } from '../../global/interfaces/accessibility-properties';
 
 /**
@@ -25,15 +25,14 @@ export class SbbTooltipTrigger implements ComponentInterface, AccessibilityPrope
 
   public render(): JSX.Element {
     return (
-      <Host role="button" aria-disabled={this.disabled}>
-        <button
-          class="sbb-tooltip-trigger"
-          disabled={this.disabled}
-          aria-label={this.accessibilityLabel}
-        >
-          <slot>{this.iconName && <sbb-icon name={this.iconName} />}</slot>
-        </button>
-      </Host>
+      <button
+        class="sbb-tooltip-trigger"
+        disabled={this.disabled}
+        aria-disabled={this.disabled}
+        aria-label={this.accessibilityLabel}
+      >
+        <slot>{this.iconName && <sbb-icon name={this.iconName} />}</slot>
+      </button>
     );
   }
 }
