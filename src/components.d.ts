@@ -333,6 +333,9 @@ export namespace Components {
           * A function used to filter out dates.
          */
         "dateFilter": (date: Date | null) => boolean;
+        /**
+          * Focuses on a day cell.
+         */
         "focusCell": () => Promise<void>;
         /**
           * The maximum valid date.
@@ -342,6 +345,9 @@ export namespace Components {
           * The minimum valid date.
          */
         "min": Date | string | number;
+        /**
+          * Resets the active month according to the new state of the calendar.
+         */
         "resetPosition": () => Promise<void>;
         /**
           * The selected date.
@@ -495,11 +501,17 @@ export namespace Components {
           * A function used to filter out dates.
          */
         "dateFilter": (date: Date | null) => boolean;
+        /**
+          * Gets the input value with the correct date format.
+         */
         "getValueAsDate": () => Promise<Date>;
         /**
           * Reference of the native input connected to the datepicker.
          */
         "input"?: string | HTMLElement;
+        /**
+          * Set the input value to the correctly formatted value.
+         */
         "setValueAsDate": (date: Date) => Promise<void>;
         /**
           * If set to true, two months are displayed
