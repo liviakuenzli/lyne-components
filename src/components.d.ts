@@ -1639,6 +1639,10 @@ export namespace Components {
          */
         "directionLabel": string;
         /**
+          * The semantic level of the direction level, e.g. 3 = h3.
+         */
+        "directionLabelLevel": InterfaceTitleAttributes['level'];
+        /**
           * Label for the destination station of the train.
          */
         "station"?: string;
@@ -3897,6 +3901,10 @@ declare namespace LocalJSX {
           * General label for "driving direction".
          */
         "directionLabel": string;
+        /**
+          * The semantic level of the direction level, e.g. 3 = h3.
+         */
+        "directionLabelLevel"?: InterfaceTitleAttributes['level'];
         /**
           * Label for the destination station of the train.
          */
