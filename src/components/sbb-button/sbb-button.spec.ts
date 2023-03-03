@@ -15,8 +15,6 @@ describe('sbb-button', () => {
           name="name"
           value="value"
           form="formid"
-          accessibility-haspopup="true"
-          accessibility-label="Travelcards & tickets"
         >
           Label Text
         </sbb-button>`,
@@ -32,8 +30,6 @@ describe('sbb-button', () => {
           name="name"
           value="value"
           form="formid"
-          accessibility-haspopup="true"
-          accessibility-label="Travelcards & tickets"
           role="button"
         >
           <mock:shadow-root>
@@ -45,8 +41,6 @@ describe('sbb-button', () => {
               name="name"
               value="value"
               form="formid"
-              aria-haspopup="true"
-              aria-label="Travelcards &amp; tickets"
              >
               <span class='sbb-button__label'><slot></slot></span>
             </button>

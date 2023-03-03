@@ -16,10 +16,6 @@ import {
   queryAndObserveNamedSlotState,
   queryNamedSlotState,
 } from '../../global/helpers/observe-named-slot-changes';
-import {
-  AccessibilityProperties,
-  getAccessibilityAttributeList,
-} from '../../global/interfaces/accessibility-properties';
 import { forwardHostEvent } from '../../global/interfaces/link-button-properties';
 import { focusInputElement } from '../../global/helpers/input-element';
 
@@ -33,7 +29,7 @@ import { focusInputElement } from '../../global/helpers/input-element';
   styleUrl: 'sbb-tag.scss',
   tag: 'sbb-tag',
 })
-export class SbbTag implements ComponentInterface, AccessibilityProperties {
+export class SbbTag implements ComponentInterface {
   /** Value of internal hidden checkbox. */
   @Prop() public value?: string;
 
@@ -54,9 +50,6 @@ export class SbbTag implements ComponentInterface, AccessibilityProperties {
    * from here https://lyne.sbb.ch/tokens/icons (optional).
    */
   @Prop() public iconName?: string;
-
-  /** The aria-label prop for the hidden input. */
-  @Prop() public accessibilityLabel: string | undefined;
 
   @Element() private _element: HTMLElement;
 
@@ -101,7 +94,6 @@ export class SbbTag implements ComponentInterface, AccessibilityProperties {
           checked={this.checked}
           aria-checked={this.checked}
           value={this.value}
-          {...getAccessibilityAttributeList(this)}
           onChange={(event: Event): void => this.checkedChanged(event)}
         />
         <span class="sbb-tag">

@@ -65,13 +65,7 @@ describe('sbb-card', () => {
   describe('events', () => {
     beforeEach(async () => {
       page = await newE2EPage();
-      await page.setContent('<sbb-card id="outer-id">Card</sbb-card>');
-
-      // Set id of the inner-button for later comparing of active element
-      await page.evaluate(
-        () =>
-          (document.getElementById('outer-id').shadowRoot.querySelector('button,a').id = 'inner-id')
-      );
+      await page.setContent('<sbb-card id="focus-id">Card</sbb-card>');
 
       element = await page.find('sbb-card');
     });
@@ -94,21 +88,11 @@ describe('sbb-card', () => {
       expect(changeSpy).toHaveReceivedEventTimes(1);
     });
 
-    it('should forward host focus event to action element', async () => {
-      const button = await page.find('sbb-card >>> .sbb-card');
-
-      const changeSpy = await button.spyOnEvent('focus');
-
+    it('should receive focus', async () => {
       await element.focus();
       await page.waitForChanges();
 
-      expect(changeSpy).toHaveReceivedEventTimes(1);
-
-      // Although the inner native button receives the focus, the active element is the host
-      expect(await page.evaluate(() => document.activeElement.id)).toBe('outer-id');
-      expect(await page.evaluate(() => document.activeElement.shadowRoot.activeElement.id)).toBe(
-        'inner-id'
-      );
+      expect(await page.evaluate(() => document.activeElement.id)).toBe('focus-id');
     });
   });
 });

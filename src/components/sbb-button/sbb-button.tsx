@@ -11,14 +11,13 @@ import {
 } from '@stencil/core';
 import { InterfaceButtonAttributes } from './sbb-button.custom';
 import {
-  actionElement,
   ButtonType,
-  focusActionElement,
-  forwardHostEvent,
+  dispatchClickEventWhenEnterKeypress,
+  dispatchClickEventWhenButtonAndSpaceKeyup,
+  handleLinkButtonClick,
   LinkButtonProperties,
   LinkButtonRenderVariables,
   LinkTargetType,
-  PopupType,
   resolveRenderVariables,
 } from '../../global/interfaces/link-button-properties';
 import { ACTION_ELEMENTS, hostContext } from '../../global/helpers/host-context';
@@ -89,15 +88,6 @@ export class SbbButton implements ComponentInterface, LinkButtonProperties {
   /** The <form> element to associate the button with. */
   @Prop() public form?: string;
 
-  /**
-   * If you use the button to trigger another widget which itself is covering
-   * the page, you must provide an according attribute for aria-haspopup.
-   */
-  @Prop() public accessibilityHaspopup: PopupType | undefined;
-
-  /** This will be forwarded as aria-label to the relevant nested element. */
-  @Prop() public accessibilityLabel: string | undefined;
-
   @Element() private _element!: HTMLElement;
 
   /** State of listed named slots, by indicating whether any element for a named slot is defined. */
@@ -107,20 +97,13 @@ export class SbbButton implements ComponentInterface, LinkButtonProperties {
 
   @State() private _currentLanguage = documentLanguage();
 
-  private _closestForm: HTMLFormElement | null;
-
   public connectedCallback(): void {
     // Check if the current element is nested in an action element.
     this.isStatic = this.isStatic || !!hostContext(ACTION_ELEMENTS, this._element);
-    // Check if the current element is nested in a form.
-    this._closestForm = hostContext('form', this._element) as HTMLFormElement;
     this._hasText = Array.from(this._element.childNodes).some(
       (n) => !(n as Element).slot && n.textContent
     );
     this._namedSlots = queryAndObserveNamedSlotState(this._element, this._namedSlots);
-
-    // Forward focus call to action element
-    this._element.focus = focusActionElement;
   }
 
   @Listen('sbbLanguageChange', { target: 'document' })
@@ -133,33 +116,19 @@ export class SbbButton implements ComponentInterface, LinkButtonProperties {
     this._namedSlots = queryNamedSlotState(this._element, this._namedSlots, event.detail);
   }
 
-  /**
-   * Method triggered on button click to emit the click event (can be caught from parent component).
-   */
-  public emitButtonClick(): void {
-    if (this.disabled || this.isStatic) {
-      return;
-    }
-
-    if (!this._closestForm || this.type !== 'submit') {
-      return;
-    }
-
-    if (this._closestForm.requestSubmit) {
-      this._closestForm.requestSubmit();
-    } else {
-      this._closestForm.submit();
-    }
-  }
-
   @Listen('click')
   public handleClick(event: Event): void {
-    if (this.disabled) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-    } else if (!this.isStatic) {
-      forwardHostEvent(event, this._element, actionElement(this._element));
-    }
+    handleLinkButtonClick(event);
+  }
+
+  @Listen('keypress')
+  public handleKeypress(event: KeyboardEvent): void {
+    dispatchClickEventWhenEnterKeypress(event);
+  }
+
+  @Listen('keyup')
+  public handleKeyup(event: KeyboardEvent): void {
+    dispatchClickEventWhenButtonAndSpaceKeyup(event);
   }
 
   private _onLabelSlotChange(event: Event): void {
@@ -174,20 +143,11 @@ export class SbbButton implements ComponentInterface, LinkButtonProperties {
       attributes,
       hostAttributes,
       screenReaderNewWindowInfo,
-    }: LinkButtonRenderVariables = resolveRenderVariables(
-      this,
-      this._currentLanguage,
-      this.isStatic
-    );
+    }: LinkButtonRenderVariables = resolveRenderVariables(this);
 
-    // See https://github.com/ionic-team/stencil/issues/2703#issuecomment-1050943715 on why form attribute is set with `setAttribute`
     return (
       <Host {...hostAttributes} data-icon-only={!this._hasText}>
-        <TAG_NAME
-          class="sbb-button"
-          {...attributes}
-          ref={(btn) => this.form && btn?.setAttribute('form', this.form)}
-        >
+        <TAG_NAME class="sbb-button" {...attributes}>
           {(this.iconName || this._namedSlots.icon) && (
             <span class="sbb-button__icon">
               <slot name="icon">{this.iconName && <sbb-icon name={this.iconName} />}</slot>

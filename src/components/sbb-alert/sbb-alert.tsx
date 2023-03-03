@@ -223,7 +223,7 @@ export class SbbAlert implements ComponentInterface, LinkProperties {
                 size="m"
                 icon-name="cross-small"
                 onClick={() => this.requestDismissal()}
-                accessibility-label={i18nCloseAlert[this._currentLanguage]}
+                aria-label={i18nCloseAlert[this._currentLanguage]}
                 class="sbb-alert__close-button"
               />
             </span>

@@ -1,9 +1,9 @@
 import {
   Component,
+  Element,
   h,
   JSX,
   Prop,
-  Element,
   Listen,
   ComponentInterface,
   State,
@@ -13,13 +13,12 @@ import {
 import { documentLanguage, SbbLanguageChangeEvent } from '../../global/helpers/language';
 import { i18nTargetOpensInNewWindow } from '../../global/i18n';
 import {
-  actionElement,
   ButtonType,
-  focusActionElement,
-  forwardHostEvent,
+  dispatchClickEventWhenButtonAndSpaceKeyup,
+  dispatchClickEventWhenEnterKeypress,
+  handleLinkButtonClick,
   LinkButtonProperties,
   LinkTargetType,
-  PopupType,
   resolveRenderVariables,
 } from '../../global/interfaces/link-button-properties';
 import { InterfaceSbbHeaderActionAttributes } from './sbb-header-action.custom';
@@ -77,15 +76,6 @@ export class SbbHeaderAction implements ComponentInterface, LinkButtonProperties
   /** Form attribute if component is displayed as a button. */
   @Prop() public form?: string;
 
-  /**
-   * If you use the button to trigger another widget which itself is covering
-   * the page, you must provide an according attribute for aria-haspopup.
-   */
-  @Prop() public accessibilityHaspopup: PopupType | undefined;
-
-  /** This will be forwarded as aria-label to the relevant nested element. */
-  @Prop() public accessibilityLabel: string | undefined;
-
   @State() private _currentLanguage = documentLanguage();
 
   @Listen('sbbLanguageChange', { target: 'document' })
@@ -98,9 +88,6 @@ export class SbbHeaderAction implements ComponentInterface, LinkButtonProperties
   private _documentResizeObserver = new ResizeObserver(() => this._updateExpanded());
 
   public connectedCallback(): void {
-    // Forward focus call to action element
-    this._element.focus = focusActionElement;
-
     this._documentResizeObserver.observe(document.documentElement);
     this._updateExpanded();
   }
@@ -111,7 +98,17 @@ export class SbbHeaderAction implements ComponentInterface, LinkButtonProperties
 
   @Listen('click')
   public handleClick(event: Event): void {
-    forwardHostEvent(event, this._element, actionElement(this._element));
+    handleLinkButtonClick(event);
+  }
+
+  @Listen('keypress')
+  public handleKeypress(event: KeyboardEvent): void {
+    dispatchClickEventWhenEnterKeypress(event);
+  }
+
+  @Listen('keyup')
+  public handleKeyup(event: KeyboardEvent): void {
+    dispatchClickEventWhenButtonAndSpaceKeyup(event);
   }
 
   @Watch('expandFrom')
@@ -125,7 +122,7 @@ export class SbbHeaderAction implements ComponentInterface, LinkButtonProperties
       attributes,
       hostAttributes,
       screenReaderNewWindowInfo,
-    } = resolveRenderVariables(this, this._currentLanguage);
+    } = resolveRenderVariables(this);
     return (
       <Host {...hostAttributes}>
         <TAG_NAME class="sbb-header-action" {...attributes}>

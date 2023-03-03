@@ -6,14 +6,14 @@ describe('sbb-menu-action', () => {
     const { root } = await newSpecPage({
       components: [SbbMenuAction],
       html: `
-        <sbb-menu-action form="formid" name="name" type="submit" accessibility-haspopup="true">
+        <sbb-menu-action form="formid" name="name" type="submit">
           <span>Action</span>
         </sbb-menu-action>
       `,
     });
 
     expect(root).toEqualHtml(`
-        <sbb-menu-action form="formid" name="name" type="submit" accessibility-haspopup="true" role="button">
+        <sbb-menu-action form="formid" name="name" type="submit" role="button">
           <mock:shadow-root>
             <button aria-haspopup="true" class="sbb-menu-action" dir="ltr" form="formid" name="name" type="submit">
               <span class="sbb-menu-action__content">

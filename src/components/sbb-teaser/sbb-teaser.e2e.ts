@@ -20,31 +20,14 @@ describe('sbb-teaser', () => {
     expect(changeSpy).toHaveReceivedEventTimes(1);
   });
 
-  it('should forward host focus event to action element', async () => {
+  it('should receive focus', async () => {
     page = await newE2EPage();
-    await page.setContent(
-      '<sbb-teaser href="link" id="outer-id" accessibility-label="label">Teaser content</sbb-teaser>'
-    );
-
-    // Set id of the inner-button for later comparing of active element
-    await page.evaluate(
-      () => (document.getElementById('outer-id').shadowRoot.querySelector('a').id = 'inner-id')
-    );
+    await page.setContent('<sbb-teaser href="link" id="focus-id">Hero content</sbb-teaser>');
 
     element = await page.find('sbb-teaser');
-    const link = await page.find('sbb-teaser >>> .sbb-teaser');
-
-    const changeSpy = await link.spyOnEvent('focus');
-
     await element.focus();
     await page.waitForChanges();
 
-    expect(changeSpy).toHaveReceivedEventTimes(1);
-
-    // Although the inner native link receives the focus, the active element is the host
-    expect(await page.evaluate(() => document.activeElement.id)).toBe('outer-id');
-    expect(await page.evaluate(() => document.activeElement.shadowRoot.activeElement.id)).toBe(
-      'inner-id'
-    );
+    expect(await page.evaluate(() => document.activeElement.id)).toBe('focus-id');
   });
 });

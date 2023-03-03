@@ -53,7 +53,6 @@ describe('sbb-link', () => {
           type="submit"
           form="formid"
           disabled
-          accessibility-haspopup="true"
         >
           <sbb-icon name="chevron-small-right-small" slot="icon"></sbb-icon>
           Travelcards &amp; tickets.
@@ -70,7 +69,6 @@ describe('sbb-link', () => {
           type="submit"
           form="formid"
           disabled
-          accessibility-haspopup="true"
         >
           <mock:shadow-root>
             <button
