@@ -112,6 +112,21 @@ export class SbbFormField implements ComponentInterface {
     this._namedSlots = queryNamedSlotState(this._element, this._namedSlots, event.detail);
   }
 
+  @Listen('will-open')
+  public onPopupOpen(event: Event): void {
+    if (this._isPopupTarget(event)) {
+      toggleDatasetEntry(this._element, 'hasPopupOpen', true);
+    }
+  }
+
+  @Listen('did-close')
+  public onPopupClose(event: Event): void {
+    if (this._isPopupTarget(event)) {
+      toggleDatasetEntry(this._element, 'hasPopupOpen', false);
+      this._input?.focus();
+    }
+  }
+
   /**
    * It is used internally to set the aria-describedby attribute for the slotted input referencing available <sbb-form-error> instances.
    */
@@ -166,27 +181,22 @@ export class SbbFormField implements ComponentInterface {
     this._input?.setAttribute('aria-describedby', value);
   }
 
-  private _setInputFocus(event: Event): void {
-    const composedPathElements = event
-      .composedPath()
-      .filter((el) => el instanceof window.HTMLElement);
-
-    const isPopup = composedPathElements.some(
-      (el) =>
-        isValidAttribute(el as HTMLElement, 'aria-haspopup') ||
-        (el as HTMLElement).tagName === 'SBB-TOOLTIP'
-    );
-
-    if (!isPopup) {
+  private _setInputFocus(): void {
+    if (!isValidAttribute(this._element, 'data-has-popup-open')) {
       this._input?.focus();
     }
+  }
+
+  private _isPopupTarget(event: Event): boolean {
+    const composedPathEls = event.composedPath().filter((el) => el instanceof window.HTMLElement);
+    return composedPathEls.some((el) => (el as HTMLElement).tagName === 'SBB-TOOLTIP');
   }
 
   public render(): JSX.Element {
     return (
       <div class="sbb-form-field__space-wrapper">
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div onClick={(event) => this._setInputFocus(event)} class="sbb-form-field__wrapper">
+        <div onClick={() => this._setInputFocus()} class="sbb-form-field__wrapper">
           <slot name="prefix"></slot>
 
           <div class="sbb-form-field__input-container">
