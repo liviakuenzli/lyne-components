@@ -33,6 +33,7 @@ import { PtRideLeg } from "./global/interfaces/pearl-chain-properties";
 import { PearlChainVerticalItemAttributes } from "./components/sbb-pearl-chain-vertical-item/sbb-pearl-chain-vertical-item.custom";
 import { InterfaceSbbRadioButtonAttributes } from "./components/sbb-radio-button/sbb-radio-button.custom";
 import { InterfaceSbbRadioButtonGroupAttributes } from "./components/sbb-radio-button-group/sbb-radio-button-group.custom";
+import { InterfaceSbbSelectionPanelAttributes } from "./components/sbb-selection-panel/sbb-selection-panel.custom.d";
 import { InterfaceSignetAttributes } from "./components/sbb-signet/sbb-signet.custom";
 import { InterfaceTabTitleAttributes } from "./components/sbb-tab-title/sbb-tab-title.custom";
 import { TagStateChange } from "./components/sbb-tag/sbb-tag.custom";
@@ -74,6 +75,7 @@ export { PtRideLeg } from "./global/interfaces/pearl-chain-properties";
 export { PearlChainVerticalItemAttributes } from "./components/sbb-pearl-chain-vertical-item/sbb-pearl-chain-vertical-item.custom";
 export { InterfaceSbbRadioButtonAttributes } from "./components/sbb-radio-button/sbb-radio-button.custom";
 export { InterfaceSbbRadioButtonGroupAttributes } from "./components/sbb-radio-button-group/sbb-radio-button-group.custom";
+export { InterfaceSbbSelectionPanelAttributes } from "./components/sbb-selection-panel/sbb-selection-panel.custom.d";
 export { InterfaceSignetAttributes } from "./components/sbb-signet/sbb-signet.custom";
 export { InterfaceTabTitleAttributes } from "./components/sbb-tab-title/sbb-tab-title.custom";
 export { TagStateChange } from "./components/sbb-tag/sbb-tag.custom";
@@ -1177,6 +1179,16 @@ export namespace Components {
          */
         "label": string;
     }
+    interface SbbSelectionPanel {
+        /**
+          * Whether the radio button is checked.
+         */
+        "checked": boolean;
+        /**
+          * Documentation for someProp
+         */
+        "someProp"?: InterfaceSbbSelectionPanelAttributes['someInterface'];
+    }
     interface SbbSignet {
         /**
           * Visual protective room around signet.
@@ -2015,6 +2027,12 @@ declare global {
         prototype: HTMLSbbSectorElement;
         new (): HTMLSbbSectorElement;
     };
+    interface HTMLSbbSelectionPanelElement extends Components.SbbSelectionPanel, HTMLStencilElement {
+    }
+    var HTMLSbbSelectionPanelElement: {
+        prototype: HTMLSbbSelectionPanelElement;
+        new (): HTMLSbbSelectionPanelElement;
+    };
     interface HTMLSbbSignetElement extends Components.SbbSignet, HTMLStencilElement {
     }
     var HTMLSbbSignetElement: {
@@ -2245,6 +2263,7 @@ declare global {
         "sbb-radio-button": HTMLSbbRadioButtonElement;
         "sbb-radio-button-group": HTMLSbbRadioButtonGroupElement;
         "sbb-sector": HTMLSbbSectorElement;
+        "sbb-selection-panel": HTMLSbbSelectionPanelElement;
         "sbb-signet": HTMLSbbSignetElement;
         "sbb-slider": HTMLSbbSliderElement;
         "sbb-tab-amount": HTMLSbbTabAmountElement;
@@ -3418,6 +3437,16 @@ declare namespace LocalJSX {
          */
         "label": string;
     }
+    interface SbbSelectionPanel {
+        /**
+          * Whether the radio button is checked.
+         */
+        "checked"?: boolean;
+        /**
+          * Documentation for someProp
+         */
+        "someProp"?: InterfaceSbbSelectionPanelAttributes['someInterface'];
+    }
     interface SbbSignet {
         /**
           * Visual protective room around signet.
@@ -4010,6 +4039,7 @@ declare namespace LocalJSX {
         "sbb-radio-button": SbbRadioButton;
         "sbb-radio-button-group": SbbRadioButtonGroup;
         "sbb-sector": SbbSector;
+        "sbb-selection-panel": SbbSelectionPanel;
         "sbb-signet": SbbSignet;
         "sbb-slider": SbbSlider;
         "sbb-tab-amount": SbbTabAmount;
@@ -4090,6 +4120,7 @@ declare module "@stencil/core" {
             "sbb-radio-button": LocalJSX.SbbRadioButton & JSXBase.HTMLAttributes<HTMLSbbRadioButtonElement>;
             "sbb-radio-button-group": LocalJSX.SbbRadioButtonGroup & JSXBase.HTMLAttributes<HTMLSbbRadioButtonGroupElement>;
             "sbb-sector": LocalJSX.SbbSector & JSXBase.HTMLAttributes<HTMLSbbSectorElement>;
+            "sbb-selection-panel": LocalJSX.SbbSelectionPanel & JSXBase.HTMLAttributes<HTMLSbbSelectionPanelElement>;
             "sbb-signet": LocalJSX.SbbSignet & JSXBase.HTMLAttributes<HTMLSbbSignetElement>;
             "sbb-slider": LocalJSX.SbbSlider & JSXBase.HTMLAttributes<HTMLSbbSliderElement>;
             "sbb-tab-amount": LocalJSX.SbbTabAmount & JSXBase.HTMLAttributes<HTMLSbbTabAmountElement>;
