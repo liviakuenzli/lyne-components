@@ -104,10 +104,6 @@ announce errors when they appear.
 
 ## Dependencies
 
-### Used by
-
- - [sbb-autocomplete-deprecated](../sbb-autocomplete-deprecated)
-
 ### Depends on
 
 - [sbb-icon](../sbb-icon)
@@ -116,7 +112,6 @@ announce errors when they appear.
 ```mermaid
 graph TD;
   sbb-form-field --> sbb-icon
-  sbb-autocomplete-deprecated --> sbb-form-field
   style sbb-form-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

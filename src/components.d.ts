@@ -179,70 +179,6 @@ export namespace Components {
          */
         "trigger": string | HTMLInputElement;
     }
-    interface SbbAutocompleteDeprecated {
-        /**
-          * Id which is sent as the id in the eventDetail payload when a value is selected
-         */
-        "eventId"?: string;
-        /**
-          * Define if borderless variant of autocomplete input should be used. See documentation of sbb-text-input for details.
-         */
-        "inputBorderless"?: boolean;
-        /**
-          * Debounce timeout to use for the input. See documentation of sbb-text-input for details.
-         */
-        "inputDebounceTimeout"?: number;
-        /**
-          * Label attribute for the input element. See sbb-text-input for details.
-         */
-        "inputLabel": string;
-        /**
-          * Determine if the input label should be visible. See sbb-text-input for details.
-         */
-        "inputLabelVisible"?: boolean;
-        /**
-          * Name attribute for the input element. See sbb-text-input for details.
-         */
-        "inputName": string;
-        /**
-          * Placeholder attribute for the input element. See sbb-text-input for details.
-         */
-        "inputPlaceholder"?: string;
-        /**
-          * Items to show in the autocomplete interface. You should pass a stringified array of objects, containing the `text` key for each object with an appropriate value.
-         */
-        "items"?: string;
-        /**
-          * Define how many chars a user must type into the input field for the autocomplete list to show up.
-         */
-        "minChars"?: number;
-        /**
-          * The value to use as default value for the input. The input value or the selected autocomplete value is reflected to this attribute.
-         */
-        "value"?: string;
-    }
-    interface SbbAutocompleteItemDeprecated {
-        /**
-          * The aria-posinset attribute for the list element
-         */
-        "ariaPosinset"?: number;
-        /**
-          * The aira-setsize attribute for the list element
-         */
-        "ariaSetsize"?: number;
-        /**
-          * The text to highlight within the string property
-         */
-        "highlight"?: string;
-        /**
-          * Mark the item as selected, which will change it's appearance and the according aria attributes.
-         */
-        "selected"?: boolean;
-        /**
-          * Text to show as content of the autocomplete item
-         */
-        "text": string;
-    }
     interface SbbButton {
         /**
           * If you use the button to trigger another widget which itself is covering the page, you must provide an according attribute for aria-haspopup.
@@ -1811,18 +1747,6 @@ declare global {
         prototype: HTMLSbbAutocompleteElement;
         new (): HTMLSbbAutocompleteElement;
     };
-    interface HTMLSbbAutocompleteDeprecatedElement extends Components.SbbAutocompleteDeprecated, HTMLStencilElement {
-    }
-    var HTMLSbbAutocompleteDeprecatedElement: {
-        prototype: HTMLSbbAutocompleteDeprecatedElement;
-        new (): HTMLSbbAutocompleteDeprecatedElement;
-    };
-    interface HTMLSbbAutocompleteItemDeprecatedElement extends Components.SbbAutocompleteItemDeprecated, HTMLStencilElement {
-    }
-    var HTMLSbbAutocompleteItemDeprecatedElement: {
-        prototype: HTMLSbbAutocompleteItemDeprecatedElement;
-        new (): HTMLSbbAutocompleteItemDeprecatedElement;
-    };
     interface HTMLSbbButtonElement extends Components.SbbButton, HTMLStencilElement {
     }
     var HTMLSbbButtonElement: {
@@ -2238,8 +2162,6 @@ declare global {
         "sbb-alert": HTMLSbbAlertElement;
         "sbb-alert-group": HTMLSbbAlertGroupElement;
         "sbb-autocomplete": HTMLSbbAutocompleteElement;
-        "sbb-autocomplete-deprecated": HTMLSbbAutocompleteDeprecatedElement;
-        "sbb-autocomplete-item-deprecated": HTMLSbbAutocompleteItemDeprecatedElement;
         "sbb-button": HTMLSbbButtonElement;
         "sbb-card": HTMLSbbCardElement;
         "sbb-card-badge": HTMLSbbCardBadgeElement;
@@ -2466,70 +2388,6 @@ declare namespace LocalJSX {
           * The element that will trigger the autocomplete opening. Accepts both a string (id of an element) or an HTML element. By default, the autocomplete will open on focus of the 'trigger' element.  If not set, will search for the first 'input' child of 'origin'
          */
         "trigger"?: string | HTMLInputElement;
-    }
-    interface SbbAutocompleteDeprecated {
-        /**
-          * Id which is sent as the id in the eventDetail payload when a value is selected
-         */
-        "eventId"?: string;
-        /**
-          * Define if borderless variant of autocomplete input should be used. See documentation of sbb-text-input for details.
-         */
-        "inputBorderless"?: boolean;
-        /**
-          * Debounce timeout to use for the input. See documentation of sbb-text-input for details.
-         */
-        "inputDebounceTimeout"?: number;
-        /**
-          * Label attribute for the input element. See sbb-text-input for details.
-         */
-        "inputLabel": string;
-        /**
-          * Determine if the input label should be visible. See sbb-text-input for details.
-         */
-        "inputLabelVisible"?: boolean;
-        /**
-          * Name attribute for the input element. See sbb-text-input for details.
-         */
-        "inputName": string;
-        /**
-          * Placeholder attribute for the input element. See sbb-text-input for details.
-         */
-        "inputPlaceholder"?: string;
-        /**
-          * Items to show in the autocomplete interface. You should pass a stringified array of objects, containing the `text` key for each object with an appropriate value.
-         */
-        "items"?: string;
-        /**
-          * Define how many chars a user must type into the input field for the autocomplete list to show up.
-         */
-        "minChars"?: number;
-        /**
-          * The value to use as default value for the input. The input value or the selected autocomplete value is reflected to this attribute.
-         */
-        "value"?: string;
-    }
-    interface SbbAutocompleteItemDeprecated {
-        /**
-          * The aria-posinset attribute for the list element
-         */
-        "ariaPosinset"?: number;
-        /**
-          * The aira-setsize attribute for the list element
-         */
-        "ariaSetsize"?: number;
-        /**
-          * The text to highlight within the string property
-         */
-        "highlight"?: string;
-        /**
-          * Mark the item as selected, which will change it's appearance and the according aria attributes.
-         */
-        "selected"?: boolean;
-        /**
-          * Text to show as content of the autocomplete item
-         */
-        "text": string;
     }
     interface SbbButton {
         /**
@@ -4053,8 +3911,6 @@ declare namespace LocalJSX {
         "sbb-alert": SbbAlert;
         "sbb-alert-group": SbbAlertGroup;
         "sbb-autocomplete": SbbAutocomplete;
-        "sbb-autocomplete-deprecated": SbbAutocompleteDeprecated;
-        "sbb-autocomplete-item-deprecated": SbbAutocompleteItemDeprecated;
         "sbb-button": SbbButton;
         "sbb-card": SbbCard;
         "sbb-card-badge": SbbCardBadge;
@@ -4135,8 +3991,6 @@ declare module "@stencil/core" {
             "sbb-alert": LocalJSX.SbbAlert & JSXBase.HTMLAttributes<HTMLSbbAlertElement>;
             "sbb-alert-group": LocalJSX.SbbAlertGroup & JSXBase.HTMLAttributes<HTMLSbbAlertGroupElement>;
             "sbb-autocomplete": LocalJSX.SbbAutocomplete & JSXBase.HTMLAttributes<HTMLSbbAutocompleteElement>;
-            "sbb-autocomplete-deprecated": LocalJSX.SbbAutocompleteDeprecated & JSXBase.HTMLAttributes<HTMLSbbAutocompleteDeprecatedElement>;
-            "sbb-autocomplete-item-deprecated": LocalJSX.SbbAutocompleteItemDeprecated & JSXBase.HTMLAttributes<HTMLSbbAutocompleteItemDeprecatedElement>;
             "sbb-button": LocalJSX.SbbButton & JSXBase.HTMLAttributes<HTMLSbbButtonElement>;
             "sbb-card": LocalJSX.SbbCard & JSXBase.HTMLAttributes<HTMLSbbCardElement>;
             "sbb-card-badge": LocalJSX.SbbCardBadge & JSXBase.HTMLAttributes<HTMLSbbCardBadgeElement>;
