@@ -27,7 +27,13 @@ let nextId = 0;
 })
 export class SbbFormField implements ComponentInterface {
   // List of supported element selectors in unnamed slot
-  private readonly _supportedInputElements = ['INPUT', 'SELECT', 'SBB-SLIDER', 'SBB-TIME-INPUT'];
+  private readonly _supportedInputElements = [
+    'INPUT',
+    'SELECT',
+    'SBB-SELECT',
+    'SBB-SLIDER',
+    'SBB-TIME-INPUT',
+  ];
 
   /**
    * Whether to reserve space for an error message.
@@ -187,7 +193,7 @@ export class SbbFormField implements ComponentInterface {
             <div class="sbb-form-field__input">
               <slot onSlotchange={(event): void => this._onSlotInputChange(event)}></slot>
             </div>
-            {this._input?.tagName === 'SELECT' && (
+            {['SELECT', 'SBB-SELECT'].includes(this._input?.tagName) && (
               <sbb-icon
                 name="chevron-small-down-small"
                 class="sbb-form-field__select-input-icon"

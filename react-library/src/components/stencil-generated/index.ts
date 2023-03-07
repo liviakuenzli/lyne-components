@@ -53,6 +53,7 @@ export const SbbPearlChainVerticalItem = /*@__PURE__*/createReactComponent<JSX.S
 export const SbbRadioButton = /*@__PURE__*/createReactComponent<JSX.SbbRadioButton, HTMLSbbRadioButtonElement>('sbb-radio-button');
 export const SbbRadioButtonGroup = /*@__PURE__*/createReactComponent<JSX.SbbRadioButtonGroup, HTMLSbbRadioButtonGroupElement>('sbb-radio-button-group');
 export const SbbSector = /*@__PURE__*/createReactComponent<JSX.SbbSector, HTMLSbbSectorElement>('sbb-sector');
+export const SbbSelect = /*@__PURE__*/createReactComponent<JSX.SbbSelect, HTMLSbbSelectElement>('sbb-select');
 export const SbbSignet = /*@__PURE__*/createReactComponent<JSX.SbbSignet, HTMLSbbSignetElement>('sbb-signet');
 export const SbbSlider = /*@__PURE__*/createReactComponent<JSX.SbbSlider, HTMLSbbSliderElement>('sbb-slider');
 export const SbbTabAmount = /*@__PURE__*/createReactComponent<JSX.SbbTabAmount, HTMLSbbTabAmountElement>('sbb-tab-amount');

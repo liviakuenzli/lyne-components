@@ -46,6 +46,47 @@ import { InterfaceToggleCheckAttributes } from "./components/sbb-toggle-check/sb
 import { StateChange } from "./components/sbb-toggle-option/sbb-toggle-option.custom";
 import { InterfaceSbbTrainAttributes } from "./components/sbb-train/sbb-train.custom.d";
 import { InterfaceSbbWagonAttributes } from "./components/sbb-wagon/sbb-wagon.custom.d";
+export { InterfaceAccordionItemAttributes } from "./components/sbb-accordion-item/sbb-accordion-item.custom";
+export { InterfaceSbbActionGroupAttributes } from "./components/sbb-action-group/sbb-action-group.custom";
+export { InterfaceAlertAttributes } from "./components/sbb-alert/sbb-alert.custom";
+export { InterfaceTitleAttributes } from "./components/sbb-title/sbb-title.custom";
+export { ButtonType, LinkTargetType, PopupType } from "./global/interfaces/link-button-properties";
+export { InterfaceSbbAlertGroupAttributes } from "./components/sbb-alert-group/sbb-alert-group.custom";
+export { InterfaceButtonAttributes } from "./components/sbb-button/sbb-button.custom";
+export { InterfaceSbbCardAttributes } from "./components/sbb-card/sbb-card.custom";
+export { InterfaceCardBadgeAttributes } from "./components/sbb-card-badge/sbb-card-badge.custom";
+export { InterfaceSbbCheckboxAttributes } from "./components/sbb-checkbox/sbb-checkbox.custom";
+export { InterfaceSbbCheckboxGroupAttributes } from "./components/sbb-checkbox-group/sbb-checkbox-group.custom";
+export { InterfaceSbbDividerAttributes } from "./components/sbb-divider/sbb-divider.custom.d";
+export { InterfaceFooterAttributes } from "./components/sbb-footer/sbb-footer.custom";
+export { InterfaceSbbFormFieldAttributes } from "./components/sbb-form-field/sbb-form-field.custom";
+export { InterfaceSbbGroupAttributes } from "./components/sbb-group/sbb-group.custom.d";
+export { InterfaceSbbHeaderActionAttributes } from "./components/sbb-header-action/sbb-header-action.custom";
+export { InterfaceImageAttributes } from "./components/sbb-image/sbb-image.custom";
+export { InterfaceJourneyHeaderAttributes } from "./components/sbb-journey-header/sbb-journey-header.custom";
+export { InterfaceSbbJourneySummaryAttributes } from "./components/sbb-journey-summary/sbb-journey-summary.custom";
+export { InterfaceLinkAttributes } from "./components/sbb-link/sbb-link.custom";
+export { InterfaceTitleAttributes as InterfaceTitleAttributes1 } from "./components/sbb-title/sbb-title.custom.d";
+export { InterfaceLinkListAttributes } from "./components/sbb-link-list/sbb-link-list.custom";
+export { InterfaceLogoAttributes } from "./components/sbb-logo/sbb-logo.custom";
+export { SbbOptionSelectionChange } from "./components/sbb-autocomplete/sbb-autocomplete.custom";
+export { InterfaceOverlayEventDetail } from "./global/core/components/overlay/overlays-interface";
+export { PtRideLeg } from "./global/interfaces/pearl-chain-properties";
+export { PearlChainVerticalItemAttributes } from "./components/sbb-pearl-chain-vertical-item/sbb-pearl-chain-vertical-item.custom";
+export { InterfaceSbbRadioButtonAttributes } from "./components/sbb-radio-button/sbb-radio-button.custom";
+export { InterfaceSbbRadioButtonGroupAttributes } from "./components/sbb-radio-button-group/sbb-radio-button-group.custom";
+export { InterfaceSignetAttributes } from "./components/sbb-signet/sbb-signet.custom";
+export { InterfaceTabTitleAttributes } from "./components/sbb-tab-title/sbb-tab-title.custom";
+export { InterfaceTimetableParkAndRailAttributes } from "./components/sbb-timetable-park-and-rail/sbb-timetable-park-and-rail.custom";
+export { Boarding, Price, Trip } from "./components/sbb-timetable-row/sbb-timetable-row.custom";
+export { InterfaceTimetableTransportationNumberAttributes } from "./components/sbb-timetable-transportation-number/sbb-timetable-transportation-number.custom";
+export { InterfaceTimetableTransportationTimeAttributes } from "./components/sbb-timetable-transportation-time/sbb-timetable-transportation-time.custom";
+export { InterfaceTimetableTravelHintsAttributes } from "./components/sbb-timetable-travel-hints/sbb-timetable-travel-hints.custom";
+export { InterfaceSbbToggleAttributes } from "./components/sbb-toggle/sbb-toggle.custom";
+export { InterfaceToggleCheckAttributes } from "./components/sbb-toggle-check/sbb-toggle-check.custom";
+export { StateChange } from "./components/sbb-toggle-option/sbb-toggle-option.custom";
+export { InterfaceSbbTrainAttributes } from "./components/sbb-train/sbb-train.custom.d";
+export { InterfaceSbbWagonAttributes } from "./components/sbb-wagon/sbb-wagon.custom.d";
 export namespace Components {
     interface SbbAccordion {
         /**
@@ -1195,6 +1236,25 @@ export namespace Components {
          */
         "label": string;
     }
+    interface SbbSelect {
+        /**
+          * Closes the selection panel.
+         */
+        "close": () => Promise<void>;
+        /**
+          * Whether the animation is enabled.
+         */
+        "disableAnimation": boolean;
+        "disabled": boolean;
+        "inputPlaceholder": string;
+        "multiple": boolean;
+        /**
+          * Opens the selection panel.
+         */
+        "open": () => Promise<void>;
+        "readonly": boolean;
+        "value": string | string[];
+    }
     interface SbbSignet {
         /**
           * Visual protective room around signet.
@@ -1742,6 +1802,10 @@ export interface SbbRadioButtonGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLSbbRadioButtonGroupElement;
 }
+export interface SbbSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSbbSelectElement;
+}
 export interface SbbSliderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLSbbSliderElement;
@@ -2045,6 +2109,12 @@ declare global {
         prototype: HTMLSbbSectorElement;
         new (): HTMLSbbSectorElement;
     };
+    interface HTMLSbbSelectElement extends Components.SbbSelect, HTMLStencilElement {
+    }
+    var HTMLSbbSelectElement: {
+        prototype: HTMLSbbSelectElement;
+        new (): HTMLSbbSelectElement;
+    };
     interface HTMLSbbSignetElement extends Components.SbbSignet, HTMLStencilElement {
     }
     var HTMLSbbSignetElement: {
@@ -2277,6 +2347,7 @@ declare global {
         "sbb-radio-button": HTMLSbbRadioButtonElement;
         "sbb-radio-button-group": HTMLSbbRadioButtonGroupElement;
         "sbb-sector": HTMLSbbSectorElement;
+        "sbb-select": HTMLSbbSelectElement;
         "sbb-signet": HTMLSbbSignetElement;
         "sbb-slider": HTMLSbbSliderElement;
         "sbb-tab-amount": HTMLSbbTabAmountElement;
@@ -3518,6 +3589,38 @@ declare namespace LocalJSX {
          */
         "label": string;
     }
+    interface SbbSelect {
+        /**
+          * Whether the animation is enabled.
+         */
+        "disableAnimation"?: boolean;
+        "disabled"?: boolean;
+        "inputPlaceholder"?: string;
+        "multiple"?: boolean;
+        "onChange"?: (event: SbbSelectCustomEvent<any>) => void;
+        /**
+          * Emits whenever the menu is closed.
+         */
+        "onDid-close"?: (event: SbbSelectCustomEvent<void>) => void;
+        /**
+          * Emits whenever the menu is opened.
+         */
+        "onDid-open"?: (event: SbbSelectCustomEvent<void>) => void;
+        /**
+          * @deprecated only used for React. Will probably be removed once React 19 is available.
+         */
+        "onDidChange"?: (event: SbbSelectCustomEvent<any>) => void;
+        /**
+          * Emits whenever the menu begins the closing transition.
+         */
+        "onWill-close"?: (event: SbbSelectCustomEvent<void>) => void;
+        /**
+          * Emits whenever the menu starts the opening transition.
+         */
+        "onWill-open"?: (event: SbbSelectCustomEvent<void>) => void;
+        "readonly"?: boolean;
+        "value"?: string | string[];
+    }
     interface SbbSignet {
         /**
           * Visual protective room around signet.
@@ -4092,6 +4195,7 @@ declare namespace LocalJSX {
         "sbb-radio-button": SbbRadioButton;
         "sbb-radio-button-group": SbbRadioButtonGroup;
         "sbb-sector": SbbSector;
+        "sbb-select": SbbSelect;
         "sbb-signet": SbbSignet;
         "sbb-slider": SbbSlider;
         "sbb-tab-amount": SbbTabAmount;
@@ -4174,6 +4278,7 @@ declare module "@stencil/core" {
             "sbb-radio-button": LocalJSX.SbbRadioButton & JSXBase.HTMLAttributes<HTMLSbbRadioButtonElement>;
             "sbb-radio-button-group": LocalJSX.SbbRadioButtonGroup & JSXBase.HTMLAttributes<HTMLSbbRadioButtonGroupElement>;
             "sbb-sector": LocalJSX.SbbSector & JSXBase.HTMLAttributes<HTMLSbbSectorElement>;
+            "sbb-select": LocalJSX.SbbSelect & JSXBase.HTMLAttributes<HTMLSbbSelectElement>;
             "sbb-signet": LocalJSX.SbbSignet & JSXBase.HTMLAttributes<HTMLSbbSignetElement>;
             "sbb-slider": LocalJSX.SbbSlider & JSXBase.HTMLAttributes<HTMLSbbSliderElement>;
             "sbb-tab-amount": LocalJSX.SbbTabAmount & JSXBase.HTMLAttributes<HTMLSbbTabAmountElement>;
